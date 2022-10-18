@@ -1,1 +1,1 @@
-## HÌnh ảnh minh họa.
+## Hình ảnh minh họa.
