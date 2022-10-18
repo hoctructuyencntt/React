@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<title>Bài 1. Giới thiệu React</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="font.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+<style>
+  #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: pink;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  #myBtn:hover {
+    background-color: #555;
+  }
+
+  .w3-main a {
+    background-color: #04AA6D;
+  }
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    background-color: gray;
+  }
+
+  .pagination a.active {
+    background-color: gray;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif
+  }
+
+
+  #tab {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #tab td,
+  #tab th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  /*
+  #tab tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+*/
+  #tab tr:hover {
+    background-color: #ddd;
+  }
+
+  #tab th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .w3-code a {
+    background-color: transparent;
+    text-decoration: none;
+    color: blue;
+  }
+
+  .video-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<body class="w3-black w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" style="text-decoration: none;" onclick="w3_close()"
+        class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu"> X </a>
+      <!--<h4><b>Giáo trình</b></h4>-->
+    </div>
+    <div class="w3-bar-block">
+      <a href="Bai01.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 1. Giới thiệu
+        React</a>
+      <a href="Bai02.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 2: Xây dựng giao diện (UI)
+        ứng dụng web với React</a>
+      <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 3: Quản lý dữ liệu ứng dụng
+        web với React</a>
+      <a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 4: Redux và React Redux</a>
+      <a href="Bai05.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 5: Kiểm thử (Testing)</a>
+    </div>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay">=</div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Lên đầu trang</button>
+    <!-- Header -->
+    <header id="portfolio">
+      <!--<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;"
+          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>-->
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()">=</span>
+      <div class="w3-container">
+        <h1><b>Bài 1. Giới thiệu React</b></h1>
+        <div class="w3-section w3-bottombar"></div>
+      </div>
+    </header>
+
+    <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+      <div class="w3-center">
+        <div class="pagination">
+          <a href="Bai02.html">Bài tiếp theo</a>
+        </div>
+      </div>
+      <div class="w3-code notranslate htmlHigh">
+        <h4>Nội dung bài học</h4>
+        <ol>
+          <li><a href="#muc1">React là gì?</a>
+          </li>
+          <li><a href="#muc2">Tại sao phải dùng React?</a>
+          </li>
+          <li><a href="#muc3">Nội dung tiên quyết và cài đặt</a>
+          </li>
+          <li><a href="#muc4">Tạo ứng dụng React đầu tiên</a>
+          </li>
+          <li><a href="#muc5">Cấu trúc một ứng dụng React </a>
+          </li>
+          <li><a href="#muc6">Thay đổi nội dung ứng dụng React</a>
+          </li>
+
+        </ol>
+      </div>
+      <h4 id="muc1"><b>I. React là gì?</b></h4>
+      <ul>
+        <li>React là một thư viện JavaScript - một trong những thư viện phổ biến nhất, <a
+            href="https://github.com/facebook/react">với hơn 100.000 sao trên GitHub</a>.</li>
+        <li>React không phải là một framwork (không giống như Angular, có nhiều tùy chọn hơn).</li>
+        <li>React là một dự án mã nguồn mở do Facebook tạo ra.</li>
+        <li>React được sử dụng để xây dựng giao diện người dùng (UI) phía người dùng (front end).</li>
+        <li>React là lớp View của ứng dụng MVC (Model View Controller).</li>
+      </ul>
+      <h4 id="muc2"><b>II. Tại sao phải dùng React?</b></h4>
+      <p>Có nhiều lý do để sử dụng React nhưng các lý do chính:</p>
+      <ul>
+        <li>React mềm dẻo: Bạn có thể sử dụng React trên nhiều nền tảng (platform) khác nhau để xây dựng giao diện người
+          dùng chất lượng.</li>
+        <li>React có trải nghiệm tuyệt vời dành cho nhà phát triển: Nhóm của bạn sẽ yêu thích React khi họ bắt đầu viết
+          mã với nó. Sự phát triển nhanh (rapid development) và API nhỏ của React được kết hợp tạo ra trải nghiệm tuyệt
+          vời dành cho nhà phát triển.</li>
+        <li>React có hỗ trợ / tài nguyên của Facebook: React được sử dụng nhiều trong ứng dụng Facebook, các website và
+          Instagram. Đó là lý do tại sao Facebook cam kết sâu sắc với nó. Họ sử dụng hơn 50 nghìn thành phần React trong
+          môi trường sản xuất của họ. Bốn cộng tác viên React hàng đầu trên GitHub là nhân viên Facebook toàn thời gian.
+        </li>
+        <li>React cũng có sự hỗ trợ của cộng đồng rộng lớn: Kể từ năm 2015, mức độ phổ biến của React đã tăng lên đều
+          đặn. Nó có một cộng đồng lớn đang hoạt động và <a href="https://github.com/facebook/react">Kho lưu trữ GitHub
+            (Github Repository)</a> của nó có hơn 164k Sao. Đây là một trong 5 Kho lưu trữ hàng đầu trên <a
+            href="https://github.com/">GitHub</a>.</li>
+        <li>React có hiệu suất tuyệt vời: Mô hình lập trình đơn giản của React cho phép nó tự động thay đổi trạng thái
+          khi dữ liệu được cập nhật. Điều này xảy ra trong bộ nhớ, vì vậy nó rất nhanh. Kích thước thư viện của React
+          cũng rất nhỏ. Nó nhỏ hơn 6kb (nhỏ hơn 3kb khi được giải nén). Điều này nhỏ hơn đáng kể so với các đối thủ cạnh
+          tranh của nó.</li>
+        <li>React dễ kiểm thử (Testing): Thiết kế của React rất thân thiện với người dùng để kiểm thử.</li>
+      </ul>
+      <h4 id="muc3"><b>III. Nội dung tiên quyết và cài đặt</b></h4>
+
+      <p>Để bắt đầu với React chúng ta cần trang bị kiến thức cơ bản:</p>
+      <ul>
+        <li><a href="https://hoctructuyencntt.github.io/TKWEB/Bai01.html">HTML, CSS và JavaScript.</a></li>
+        <li><a href="https://hoctructuyencntt.com/2022/07/28/ngon-ngu-javascript/">JavaScript nâng cao.</a></li>
+      </ul>
+      <p>Tải và cài Node.js và npm (Node.js package manager) tại <a
+          href="https://nodejs.org/en/download/">nodejs.org</a>, nếu đang dùng hệ điều
+        hành Windows, chọn Windows Installer tại mục LTS.</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_1.png">
+      </div>
+      <p>Tải và cài Visual Studio Code tại <a href="https://code.visualstudio.com/download">code.visualstudio.com</a>
+      </p>
+      <p> Sau khi cài đặt thành công, mở Visual Studio Code và vào mục Terminal > New Terminal. </p>
+      <h4 id="muc4"><b>IV. Tạo ứng dụng React đầu tiên</b></h4>
+      <p> Thư mục mặc định của Terminal thông thường là C:\Users\Admin></p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_2.png">
+      </div>
+      <p>Có thể di chuyển đến thư mục khác dùng lệnh cd. Ví dụ chúng ta sẽ di chuyển đến thư mục ReactProject trong ổ
+        đĩa D, lệnh như sau:</p>
+      <ul>
+        <li>C:\Users\Admin> cd d: -> di chuyển đến ổ D</li>
+        <li>D:\> cd ReactProject -> di chuyển đến thư mục ReactProject</li>
+      </ul>
+      <p>Kế tiếp là cài đặt môi trường React, bài viết này dùng create-react-app, bằng cách dùng gói npm:</p>
+      <div class="w3-code notranslate htmlHigh">
+        D:\ReactProject> npm install -g create-react-app
+      </div>
+      <p>Sau đó tiến hành tạo ứng dụng đầu tiên, ví dụ tên myfirstreact</p>
+      <div class="w3-code notranslate htmlHigh">
+        D:\ReactProject> npx create-react-app myfirstreact
+      </div>
+      <p>Nếu thành công:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_3.png">
+      </div>
+      <p> Sau khi tạo ứng dụng thành công sẽ xuất hiện thư mục tên myfirstreact trong D:\ReactProject. Chúng ta di
+        chuyển đến thư mục này </p>
+      <div class="w3-code notranslate htmlHigh">
+        D:\ReactProject> cd myfirstreact
+      </div>
+      <p>Cuối cùng là thực thi ứng dụng dùng lệnh start của gói npm:</p>
+      <div class="w3-code notranslate htmlHigh">
+        D:\ReactProject\myfirstreact> npm start
+      </div>
+      <p>Quan sát Terminal xuất hiện:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_4.png">
+      </div>
+      <p>Và chờ cho đến khi:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_5.png">
+      </div>
+      <p>Cửa sổ trình duyệt sẽ mở ứng dụng React với url http://localhost:3000/</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_6.png">
+      </div>
+      <p>Đóng trình duyệt.</p>
+      <h4 id="muc5"><b>V. Cấu trúc một ứng dụng React </b></h4>
+      <p>Bây giờ chúng ta sẽ lướt qua cấu trúc một ứng dụng React sẽ bao gồm những thành phần cơ bản nào bằng cách vào
+        File > Open Folder... và chọn myfirstreact trong ổ D. Cấu trúc thư mục myfirstreact:</p>
+      <div style="text-align: center;">
+        <img style="width:70%;height: auto;" src="img/bai01/bai01_7.png">
+      </div>
+      <p>Thư mục node_modules chứa các thư việc dùng trong ứng dụng React và chúng ta không can thiệp vào </p>
+      <div style="text-align: center;">
+        <img style="width:70%;height: auto;" src="img/bai01/bai01_8.png">
+      </div>
+      <p>Thư mục kế tiếp là thư mục public chứa các thành phần như các icon, tập tin HTML, hình ảnh, tập tin json,...
+      </p>
+      <div style="text-align: center;">
+        <img style="width:70%;height: auto;" src="img/bai01/bai01_9.png">
+      </div>
+      <p>Tập tin index.html là tập tin mặc định khi chúng ta tạo một ứng dụng React và React sẽ kết xuất nội dung đến
+        trình duyệt thông qua tập tin này. Nếu muốn, chúng ta có thể tạo các tập tin HTML tùy ý và gọi khi thực thi
+        React.</p>
+      <p>Tham khảo thêm về thư mục public tại <a
+          href="https://create-react-app.dev/docs/using-the-public-folder/">using-the-public-folder</a></p>
+      <p>Thư mục src chứa các thành phần quan trọng của một ứng dụng React bao gồm App.css, App.js và App.test.js,
+        index.js, index.css,...</p>
+      <div style="text-align: center;">
+        <img style="width:70%;height: auto;" src="img/bai01/bai01_10.png">
+      </div>
+      <p>Các thành phần này quyết định giao diện của ứng dụng React như khi chúng ta thực thi ở trên</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_11.png">
+      </div>
+      <p>Mở App.js, nội dung sẽ trông như </p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_12.png">
+      </div>
+      <h4 id="muc6"><b>VI. Thay đổi nội dung ứng dụng React </b></h4>
+      <p>Trong App.js, thay nội dung </p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;div className="App"&gt;<br>
+        &nbsp;...<br>
+        &lt;/div&gt;
+      </div>
+      <p>Bằng nội dung:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;div className="App"&gt;<br>
+        &nbsp;&lt;h1&gt;Xin chào các bạn đến với React!&lt;/h1&gt;<br>
+        &lt;/div&gt;
+      </div>
+      <p>Lưu và thực thi lại ứng dụng</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_13.png">
+      </div>
+      <p>Mặc dù chúng ta vừa thay đổi nội dung trong App.js nhưng cái quyết định giao diện trang web mà chúng ta cần
+        quan
+        tâm là các tập tin index.html (thư mục public) và index.js (thư mục src). App.js định nghĩa thành phần App mà
+        trong React gọi là component và App được gọi trong tập tin index.js trước khi được kết xuất đến trình duyệt web
+        thông qua tập tin index.html. Chi tiết về component và cách sử dụng sẽ được tìm hiểu trong các bài sau.</p>
+      <p>Bây giờ chúng ta sẽ thực hiện thay đổi từ các tập tin index.html và index.js bằng cách mở hai tập tin trên và
+        thay
+        đổi nội dung như sau:</p>
+      <p><b>index.html</b></p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;!DOCTYPE html&gt;<br>
+        &lt;html lang="en"&gt;<br>
+
+        &nbsp;&lt;head&gt;<br>
+        &nbsp; &nbsp;&lt;meta charset="utf-8" /&gt;<br>
+        &nbsp; &nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;<br>
+        &nbsp; &nbsp;&lt;title&gt;Ứng dụng React đầu tiên!&lt;/title&gt;<br>
+        &nbsp;&lt;/head&gt;<br>
+
+        &nbsp;&lt;body&gt;<br>
+
+        &nbsp; &nbsp;&lt;div id="root"&gt;&lt;/div&gt;<br>
+
+        &nbsp;&lt;/body&gt;<br>
+
+        &lt;/html&gt;
+      </div>
+      <p><b>index.js</b></p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br>
+
+        const myfirstelement =&lt;h1&gt;Xin chào đến với React!&lt;/h1&gt;;<br>
+
+        ReactDOM.render(myfirstelement, document.getElementById('root'));
+      </div>
+      <p>Thực thi lại ứng dụng</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai01/bai01_14.png">
+      </div>
+      <p> Ý nghĩa các dòng mã sẽ được tìm hiểu trong các bài kế tiếp. Tuy nhiên, khi làm việc với React chúng ta cần sử
+        dụng các hàm từ hai thư viện quan trọng là React và ReactDOM nên chúng ta cần thêm hai mô-đun sau đến tập tin
+        js:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';
+      </div>
+
+
+
+
+
+      <div class="w3-center">
+        <div class="pagination">
+          <a href="Bai02.html">Bài tiếp theo</a>
+        </div>
+      </div>
+    </div>
+    <!-- End page content -->
+  </div>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+    // Phần button top
+    var mybutton = document.getElementById("myBtn");
+
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+</body>
+
+</html>

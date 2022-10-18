@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+<title>Bài 3: Quản lý dữ liệu ứng dụng web với React</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="font.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+<style>
+  #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: pink;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  #myBtn:hover {
+    background-color: #555;
+  }
+
+  .w3-main a {
+    background-color: #04AA6D;
+  }
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    background-color: gray;
+  }
+
+  .pagination a.active {
+    background-color: gray;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif
+  }
+
+
+  table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table td,
+  table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  /*
+  #tab tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+*/
+  table tr:hover {
+    background-color: #ddd;
+  }
+
+  table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .w3-code a {
+    background-color: transparent;
+    text-decoration: none;
+    color: blue;
+  }
+</style>
+
+<body class="w3-black w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" style="text-decoration: none;" onclick="w3_close()"
+        class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu"> X </a>
+      <!--<h4><b>Giáo trình</b></h4>-->
+    </div>
+    <div class="w3-bar-block">
+      <a href="Bai01.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 1. Giới thiệu
+        React</a>
+      <a href="Bai02.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 2: Xây dựng giao diện (UI)
+        ứng dụng web với React</a>
+      <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 3: Quản lý dữ
+        liệu ứng dụng
+        web với React</a>
+      <a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 4: Redux và React Redux</a>
+      <a href="Bai05.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 5: Kiểm thử (Testing)</a>
+    </div>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay">=</div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Lên đầu trang</button>
+    <!-- Header -->
+    <header id="portfolio">
+      <!--<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;"
+          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>-->
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()">=</span>
+      <div class="w3-container">
+        <h1><b>Bài 3: Quản lý dữ liệu ứng dụng web với React</b></h1>
+      </div>
+    </header>
+    <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+      <div class="w3-center">
+        <div class="pagination">
+          <a href="Bai02.html">Bài trước</a>
+          <a href="Bai04.html">Bài tiếp theo</a>
+        </div>
+      </div>
+      <div class="w3-code notranslate htmlHigh">
+        <h4>Nội dung bài học</h4>
+        <ol>
+          <li><a href="#muc1">props, ref và state</a>
+            <ul>
+              <li><a href="#muc1_1">Thuộc tính của component</a>
+              <li><a href="#muc1_2">Đối tượng props </a>
+              <li><a href="#muc1_3"> Đối tượng state </a>
+              <li><a href="#muc1_4">Chuyển state lên trên (Lifting state up)</a>
+              <li><a href="#muc1_5">Tính năng ref</a>
+            </ul>
+          </li>
+          <li><a href="#muc2">Chu kỳ sống của các thành phần React (React Lifecycle)</a>
+            <ul>
+              <li><a href="#muc2_1"> Giai đoạn Mounting</a>
+              <li><a href="#muc2_2">Giai đoạn Updating</a>
+              <li><a href="#muc2_3">Giai đoạn Unmounting</a>
+            </ul>
+          </li>
+          <li><a href="#muc3">Xử lý sự kiện (Events Handling)</a>
+            <ul>
+              <li><a href="#muc3_1"> Sự kiện (events) và trình xử lý sự kiện (event handlers)</a>
+              <li><a href="#muc3_2">Từ khóa this và hàm mũi tên</a>
+
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <h4 id="muc1"><b>I. Props, Ref và State</b></h4>
+      <h5 id="muc1_1">Thuộc tính của component</h5>
+      <p>Các component trong React có các thuộc tính tương tự các thuộc tính của các phần tử HTML. Cú pháp:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;Tên_Component Thuộc_tính_1 = giá_trị_1 Thuộc_tính_2 = giá_trị_2 ... /&gt;
+      </div>
+      <p>Ví dụ: Các thuộc tính brand và model của component Car</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;Car brand="Ford" model=" Mustang" /&gt;
+      </div>
+      <p>Để sử dụng các thuộc tính, component sử dụng các đối tượng props và state.</p>
+      <h5 id="muc1_2">Đối tượng props</h5>
+      <p>Các thuộc tính của component có thể được kết xuất đến người dùng thông qua đối tượng props theo cú pháp</p>
+      <div class="w3-code notranslate htmlHigh">
+        this.props.Thuộc_tính.
+      </div>
+      <p>Ví dụ component Car có hai thuộc tính là brand và model và để render giá trị các thuộc tính này chúng ta dùng
+        đối
+        tượng props như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a {this.props.brand} and {this.props.model}!&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent =
+        &lt;Car brand="Ford" model="Mustang" /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <p>Có thể thấy props tương tự các đối số trong hàm. Nhờ props, dữ liệu có thể được chuyển đổi qua lại giữa các
+        component. Ví dụ gửi dữ liệu các thuộc tính brand và model từ Garage đến Car:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return &lt;h2&gt;I am a {this.props.brand} and {this.props.model}!&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        class Garage extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Who lives in my garage?&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Car brand="Ford" model="Mustang" /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        ReactDOM.render(
+        &nbsp;&nbsp;&lt;Garage /&gt;, document.getElementById('root'));<br>
+      </div>
+      <p>Nếu dữ liệu thuộc tính một component có cấu trúc phức tạp thay vì một chuỗi đơn giản như Ford hay Mustang chúng
+        ta
+        có thể dùng biến. Ví dụ khai báo biến carinfo kiểu object chứa nhiều thuộc tính:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a {this.props.info.brand} and
+        {this.props.info.model}!&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const carinfo = { brand: "Ford", model: "Mustang" };<br>
+        const myComponent =<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;Car info = {carinfo} /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <p>Nếu component có chứa hàm constructor thì props nên được chuyển đến constructor và React.Component thông qua
+        hàm
+        super():</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return &lt;h2&gt;I am a {this.props.info.brand} and
+        {this.props.info.model}!&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Lý do cho việc này sẽ được giải thích trong đối tượng state. Tham khảo tại <a
+          href="https://stackoverflow.com/questions/30571875/whats-the-difference-between-super-and-superprops-in-react-when-using-e">stackoverflow.com</a>.
+      </p>
+      <h5 id="muc1_3">Đối tượng state</h5>
+      <p>Đối tượng state là nơi chúng ta lưu trữ các giá trị thuộc tính của component. Đối tượng state luôn được khởi
+        tạo trong hàm constructor của component. Ví dụ đối tượng state lưu trữ thuộc tính brand:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;this.state = {brand: "Ford"};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;return &lt;h2&gt;I am a Car.&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Hay lưu trữ dữ liệu phức tạp hơn (tức nhiều thuộc tính):</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;return &lt;h2&gt;I am a Car.&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Sử dụng state theo cú pháp this.state.Thuộc_tính:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand}
+        and my model is {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent =
+        &lt;Car /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <p>Lưu ý rằng, với state khi component được sử dụng sẽ không cần chuyển tên thuộc tính như khi sử dụng đối tượng
+        props.
+        Một điều khác phân biệt props và state đó là props chỉ đọc (read only) trong khi state có thể thay đổi bằng cách
+        dùng hàm setState()</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;model: "Mustang"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;changeCar = () => {<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;button onClick={this.changeCar}&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Change Car<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent =
+        &lt;Car /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <h5 id="muc1_4">Chuyển state lên trên (Lifting state up)</h5>
+      <p>Thông thường, khi một dữ liệu thay đổi nó sẽ ảnh hưởng tới nhiều component cùng lúc. State được khuyến khích
+        chia
+        sẻ ở component cha của chúng.</p>
+      <p>Xem giải thích và ví dụ minh họa tại https://vi.reactjs.org/docs/lifting-state-up.html</p>
+      <h5 id="muc1_5">Tính năng ref</h5>
+      <p>Tham chiếu, hoặc ref, là một tính năng cho phép các thành phần React tương tác với các phần tử con. Trường hợp
+        sử dụng phổ biến nhất cho các refs là tương tác với các phần tử UI có đọc đầu vào từ người dùng. Hãy xem xét
+        phần tử form HTML. Những phần tử này được kết xuất đến trình duyệt nhưng người dùng có thể tương tác với chúng
+        và các form cần phản hồi một cách thích hợp.</p>
+      <p>Hãy xem xét component FancyButton hiển thị phần tử DOM của button gốc:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function FancyButton(props) {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;button className="FancyButton"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{props.children}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }
+      </div>
+      <p>Các React components ẩn chi tiết triển khai của chúng, bao gồm cả đầu ra được hiển thị của chúng. Các
+        components
+        khác sử dụng FancyButton thường sẽ không cần lấy tham chiếu đến phần tử DOM của button bên trong. Điều này là
+        tốt vì nó ngăn các components dựa vào cấu trúc DOM của nhau quá nhiều.</p>
+      <p>Trong đoạn mã dưới đây, FancyButton sử dụng React.forwardRef để lấy ref được chuyển đến nó, sau đó chuyển tiếp
+        nó đến DOM button mà nó hiển thị:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const FancyButton = React.forwardRef((props, ref) => (<br>
+        &nbsp;&nbsp;&lt;button ref={ref} className="FancyButton"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{props.children}<br>
+        &nbsp;&nbsp;&lt;/button&gt;<br>
+        ));<br>
+        // Bây giờ có thể nhận được ref trực tiếp đến nút DOM:<br>
+        const ref = React.createRef();<br>
+        &lt;FancyButton ref={ref}&gt;Click me!&lt;/FancyButton&gt;;
+      </div>
+      <p>Bằng cách này, các components sử dụng FancyButton có thể nhận được tham chiếu đến DOM button bên dưới và truy
+        cập nó nếu cần - giống như nếu chúng sử dụng trực tiếp DOM button.</p>
+      <p>Dưới đây là giải thích từng bước về những gì xảy ra trong ví dụ trên:</p>
+      <ul>
+        <li>Chúng ta tạo một React ref bằng cách gọi React.createRef và gán nó cho một biến ref.</li>
+        <li>Chúng ta chuyển ref xuống &lt;FancyButton ref = {ref}&gt; bằng cách chỉ định nó như một thuộc tính JSX.</li>
+        <li>React chuyển ref tới hàm (props, ref) => ... bên trong forwardRef như một đối số thứ hai.</li>
+        <li>Chúng ta chuyển tiếp đối số ref này xuống &lt;button ref = {ref}&gt; bằng cách chỉ định nó làm thuộc tính
+          JSX.
+        </li>
+        <li>Khi ref được đính kèm, ref.current sẽ trỏ đến&lt;button&gt;.</li>
+      </ul>
+      <p>Tham khảo thêm về ref tại <a
+          href="https://vi.reactjs.org/docs/forwarding-refs.html#gatsby-focus-wrapper">reactjs.org</a>.</p>
+      <h4 id="muc2"><b>II. Chu kỳ sống của các thành phần React (React Lifecycle)</b></h4>
+      <p>Mỗi component trong React có một vòng đời (lifecycle) mà chúng ta có thể theo dõi và xử lý. Vòng đời này gồm 3
+        giai đoạn:</p>
+      <ul>
+        <li>Mounting: Là đặt các phần tử HTML vào trong cây DOM.</li>
+        <li>Updating: Cập nhật các thay đổi từ props hoặc state.</li>
+        <li>Unmounting: Component bị xóa khỏi cây DOM.</li>
+      </ul>
+      <h5 id="muc2_1">Giai đoạn Mounting</h5>
+      <p>Trong giai đoạn này, React có 4 phương thức cơ bản là constructor(), getDerivedStateFromProps(), render() và
+        componentDidMount(). Trong đó phương thức render() phải luôn luôn được gọi và các phương thức khác là tùy chọn.
+        Trong các bài trước chúng ta đã làm quen với render() và constructor():</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {brand: "Ford"};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Trong component, phương thức constructor được gọi đầu tiên và phương thức super() cũng phải được gọi đầu tiên
+        trong constructor. Đối tượng state cũng phải được khởi tạo trong constructor và đối tượng props cũng là tham số
+        của constructor và super.</p>
+      <p>Phương thức render() dùng để kết xuất các component đến trình duyệt hay chính xác hơn là kết xuất các phần tử
+        HTML
+        đến cây DOM.</p>
+      <p>Phương thức getDerivedStateFromProps() được gọi trước khi các phần tử được kết xuất đến cây DOM và là nơi khởi
+        tạo
+        đối tượng state dựa trên đối tượng props. Nó nhận state như đối số và sẽ trả về một đối tượng với sự thay đổi
+        đối
+        tượng state. Ví dụ khởi tạo các thuộc tính brand và model từ state đến các thuộc tính newbrand và newmodel của
+        props.</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+
+        &nbsp;&nbsp;static getDerivedStateFromProps(props, state) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return { brand: props.newbrand, model: props.newmodel };<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent = &lt;Car newbrand="Toyota" newmodel="Camry" /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <p>Ngược với getDerivedStateFromProps, phương thức componentDidMount() được gọi sau khi component được kết xuất
+        đến
+        DOM. Điều này cũng có nghĩa phương thức này là nơi dùng các lệnh yêu cầu component khi nó đã được đặt trên DOM.
+        Ví
+        dụ Car sẽ được kết xuất và thay đổi các thuộc tính sau 3 giây:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+
+        &nbsp;&nbsp;componentDidMount() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, 3000);<br>
+        &nbsp;&nbsp;}<br>
+
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent = &lt;Car /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <h5 id="muc2_2">Giai đoạn Updating</h5>
+      <p>Khi component được kết xuất đến DOM có thể sẽ có sự thay đổi liên quan đến state hay props và đây là giai đoạn
+        updating. Trong giai đoạn này có các phương thức getDerivedStateFromProps(), shouldComponentUpdate(), render(),
+        getSnapshotBeforeUpdate() và componentDidUpdate(). Trong đó, render() là phương thức được gọi bắt buộc, các
+        phương
+        thức khác tùy chọn.</p>
+      <p>Khi xuất hiện cập nhật thông tin đến component, phương thức getDerivedStateFromProps() luôn được ưu tiên số 1
+        (nếu
+        chúng ta định nghĩa). Xét trở lại ví dụ</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;changeCar = () => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 &gt;I am a Car. &lt;/h2 &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p &gt;My brand is {this.state.brand} and my model is
+        {this.state.model} &lt;/p &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={this.changeCar} &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Car<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div &gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent =
+        &lt;Car newbrand="Honda" newmodel="Civic" / &gt;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));<br>
+      </div>
+      <p>Kết quả:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai03/bai03_1.png">
+      </div>
+      <p>Nếu nhấn nút Change Car</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai03/bai03_2.png">
+      </div>
+      <p>Hai thuộc tính newbrand và newmodel không được liên quan gì vì chúng thuộc quyền quản lý của props. Bây giờ
+        thêm phương thức getDerivedStateFromProps() đến component Car:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;static getDerivedStateFromProps(props, state) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return {brand: props.newbrand, model:props.newmodel};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;changeCar = () => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={this.changeCar}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Car<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent =
+        &lt;Car newbrand="Honda" newmodel="Civic" /&gt;;
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <p>Kết quả:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai03/bai03_3.png">
+      </div>
+      <p>Dù chúng ta nhấn nút Change Car cũng không thay đổi gì.
+        Phương thức khác trong giai đoạn Updating là shouldComponentUpdate() quyết định liệu component có tiếp tục cập
+        nhật hay không. Giá trị trả về của phương thức này là true (tiếp tục cập nhật) hay false (ngừng cập nhật). Xét
+        lại
+        ví dụ component Car:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;changeCar = () => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={this.changeCar}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Car<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent = &lt;Car /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));<br>
+      </div>
+      <p>Thuộc tính của Car sẽ thay đổi khi nhấn nút Change Car. Bây giờ chúng ta thêm phương thức
+        shouldComponentUpdate()</p>
+      <div class="w3-code notranslate htmlHigh">
+        constructor(props) {<br>
+        &nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;};<br>
+        }<br>
+        shouldComponentUpdate() {<br>
+        &nbsp;&nbsp;return false;<br>
+        }<br>
+        changeCar = () => {<br>
+        &nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        }
+      </div>
+      <p>Vì trả về false nên Car sẽ không thay đổi khi nhấn nút Change Car. Tuy nhiên, nếu chúng ta thay đổi giá trị trả
+        về
+        thành true thì mọi thứ sẽ trở lại bình thường (nghĩa là được cập nhật).
+        Tại giai đoạn cập nhật chúng ta có thể thay đổi thông tin về component và chúng ta cũng muốn biết thông tin
+        trước
+        và sau khi thay đổi component. Phương thức getSnapshotBeforeUpdate() sẽ cung cấp các thông tin trước khi cập
+        nhật
+        và phương thức componentDidUpdate() sẽ cung cấp thông tin sau khi cập nhật. Xét một ví dụ diễn ra quá trình cập
+        nhật component Car và các thông tin trước và sau cập nhật được trả về. Xét ví dụ</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;getSnapshotBeforeUpdate(prevProps, prevState) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("div1").innerHTML = "Before the update, the brand was " +
+        prevState.brand + " and model was " + prevState.model;<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;componentDidUpdate() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("div2").innerHTML = "The updated car is " + this.state.brand + "
+        brand and " + this.state.model + " model";<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;changeCar = () => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={this.changeCar}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Car<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="div1"&gt;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="div2"&gt;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        const myComponent =
+        &lt;Car /&gt;;<br>
+        ReactDOM.render(myComponent, document.getElementById('root'));
+      </div>
+      <p>Thực thi</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai03/bai03_4.png">
+      </div>
+      <p>Nhấn Change Car</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai03/bai03_5.png">
+      </div>
+      <h5 id="muc2_3">Giai đoạn Unmounting</h5>
+      <p>Đây là giai đoạn khi một component được xóa khỏi DOM. Tại giai đoạn này chỉ có một phương thức là
+        componentWillUnmount() được gọi. Tham khảo ví dụ tại
+        https://www.w3schools.com/react/showreact.asp?filename=demo2_react_lifecycle_componentwillunmount</p>
+
+      <h4 id="muc3"><b>III. Xử lý sự kiện (Events Handling)</b></h4>
+      <p>Giống như HTML, các component React cũng phản ứng đến các hành động người dùng thông qua các sự kiện (events).
+        Chúng ta đã dùng sự kiện onClick cho button và trong bài này chúng ta sẽ tìm hiểu chi tiết hơn.</p>
+      <h5 id="muc3_1">Sự kiện (events) và trình xử lý sự kiện (event handlers)</h5>
+      <p>Sự kiện là các hành động tương tác của người dùng (user) đến giao diện ứng dụng như nhấn chuột trái đến button,
+        nhập thông tin,...</p>
+      <p>Ứng dụng sẽ đưa ra phản ứng tương ứng với các hành động của người dùng gọi là xử lý sự kiện. Hiểu một cách đơn
+        giản, một trình xử lý sự kiện là hàm hay phương thức thực hiện chức năng nào đó tương ứng với một sự kiện nào đó
+        của người dùng.</p>
+      <p>Trong HTML, sự kiện nhấn chuột trái của button được viết như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;button onclick="changeCar()"&gt;Change Car!&lt;/button&gt;
+      </div>
+      <p>Với onclick phản ánh sự kiện nhấn chuột trái và changeCar() là hàm (hay phương thức) thực thi khi người dùng
+        nhấn
+        chuột trái đến button. Hàm changeCar() còn được gọi là trình xử lý sự kiện onclick. Trong HTML các sự kiện được
+        viết thường như onclick, onchange, onmouseover,...</p>
+      <p>Các sự kiện trong React được viết theo kiểu camelCase tức là onClick, onChange, onMouseOver,…(xem danh sách chi
+        tiết tại <a href="https://reactjs.org/docs/events.html">https://reactjs.org/docs/events.html</a>). Xem lại ví dụ
+        từ bài 5:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+
+        &nbsp;&nbsp;constructor(props) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;}<br>
+
+        &nbsp;&nbsp;changeCar = () => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        &nbsp;&nbsp;}<br>
+
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;I am a Car.&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;My brand is {this.state.brand} and my model is
+        {this.state.model}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={this.changeCar}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Car<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Có một số khác biệt so với HTML chúng ta cần lưu ý:</p>
+      <ul>
+        <li>onClick thay cho onclick (như đã nêu trên)</li>
+        <li>Hàm changeCar được đặt trong cặp ngoặc {} thay vì trong cặp nháy kép</li>
+        <li>Hàm changeCar không có cặp ngoặc () và theo sau từ khóa this</li>
+        <li>Định nghĩa hàm changeCar trong ví dụ trên dùng hàm mũi tên (arrow function)</li>
+      </ul>
+      <h5 id="muc3_2">Từ khóa this và hàm mũi tên</h5>
+      <p>Từ khóa this trong React chỉ component chứa hàm sử dụng. Ví dụ this trong ví dụ trên chỉ component Car chứa hàm
+        changeCar. Đây cũng chính là lý do chúng ta phải dùng hàm mũi tên để định nghĩa changeCar thay vì định nghĩa hàm
+        kiểu thông thường. Với hàm mũi tên, từ khóa this luôn thể hiện đối tượng định nghĩa hàm đó. Để hiểu hơn, giả sử
+        chúng ta định nghĩa changeCar theo kiểu thông thường như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        changeCar() {<br>
+        &nbsp;&nbsp;this.setState({ brand: "Toyota", model: "Camry" });<br>
+        }
+      </div>
+      <p>Kết quả sẽ xuất hiện lỗi vì React không xác định được this chỉ đối tượng nào:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai03/bai03_6.png">
+      </div>
+      <p>Để khắc phục lỗi này mà không dùng hàm mũi tên chúng ta dùng hàm bind() để kết nối hàm với đối tượng định nghĩa
+        nó. Ví dụ chúng ta dùng hàm bind() trong hàm constructor của component Car như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        constructor(props) {<br>
+        &nbsp;&nbsp;super(props);<br>
+        &nbsp;&nbsp;this.state = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;brand: "Ford",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;model: "Mustang"<br>
+        &nbsp;&nbsp;};<br>
+        &nbsp;&nbsp;this.changeCar = this.changeCar.bind(this)<br>
+        }
+      </div>
+      <p>Với JS hiện đại chúng ta nên làm quen với hàm mũi tên vì những tiện ích nó mang lại. Để hiểu hơn về hàm mũi tên
+        trong JS bạn tham khảo tại <a href="https://ngocminhtran.com/2020/02/26/javascript-hien-dai-phan-1/">
+          https://ngocminhtran.com/2020/02/26/javascript-hien-dai-phan-1/</a>
+        Trong trường hợp hàm chứa các tham số ví dụ changeCar có thể định nghĩa như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        changeCar = (b, m) => {<br>
+        &nbsp;&nbsp;this.setState({ brand: b, model: m });<br>
+        }
+      </div>
+      <p>Khi đó, tại sự kiện onClick chúng ta viết:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;button onClick={() => this.changeCar("Toyota", "Camry")}&gt;<br>
+        &lt;/button&gt;
+      </div>
+      <p>React cũng có thể cho chúng ta biết chính xác đối tượng sự kiện chúng ta đang làm việc. Có thể tham khảo tại <a
+          href="https://www.w3schools.com/react/showreact.asp?filename=demo2_react_events_event">W3Schools</a>.</p>
+
+
+
+
+
+      <div class="w3-center">
+        <div class="pagination">
+          <a href="Bai02.html">Bài trước</a>
+          <a href="Bai04.html">Bài tiếp theo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End page content -->
+  </div>
+  <script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript"></script>
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Phần button top
+    var mybutton = document.getElementById("myBtn");
+
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+</body>
+
+</html>

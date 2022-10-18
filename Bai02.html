@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<title>Bài 2: Xây dựng giao diện (UI) ứng dụng web với React</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="font.css">
+<link rel="stylesheet" href="font-awesome.min.css">
+<style>
+  #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: pink;
+    color: black;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  #myBtn:hover {
+    background-color: #555;
+  }
+
+  .w3-main a {
+    background-color: #04AA6D;
+  }
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    background-color: gray;
+  }
+
+  .pagination a.active {
+    background-color: gray;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif
+  }
+
+
+  table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table td,
+  table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  /*
+  #tab tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+*/
+  table tr:hover {
+    background-color: #ddd;
+  }
+
+  table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .w3-code a {
+    background-color: transparent;
+    text-decoration: none;
+    color: blue;
+  }
+
+  .video-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<body class="w3-black w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" style="text-decoration: none;" onclick="w3_close()"
+        class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="Đóng"> X </a>
+      <!--<h4><b>Giáo trình</b></h4>-->
+    </div>
+    <div class="w3-bar-block">
+      <a href="Bai01.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 1. Giới thiệu
+        React</a>
+      <a href="Bai02.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 2: Xây dựng
+        giao diện (UI)
+        ứng dụng web với React</a>
+      <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 3: Quản lý dữ liệu ứng dụng
+        web với React</a>
+      <a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 4: Redux và React Redux</a>
+      <a href="Bai05.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 5: Kiểm thử (Testing)</a>
+    </div>
+  </nav>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay">=</div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Lên đầu trang</button>
+    <!-- Header -->
+    <header id="portfolio">
+      <!--<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;"
+          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>-->
+      <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()">=</span>
+      <div class="w3-container">
+        <h1><b>Bài 2: Xây dựng giao diện (UI) ứng dụng web với React</b></h1>
+        <div class="w3-section w3-bottombar"></div>
+      </div>
+    </header>
+
+    <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+      <div class="w3-center">
+        <div class="pagination">
+          <a href="Bai01.html">Bài trước</a>
+          <a href="Bai03.html">Bài tiếp theo</a>
+        </div>
+      </div>
+      <div class="w3-code notranslate htmlHigh">
+        <h4>Nội dung bài học</h4>
+        <ol>
+          <li><a href="#muc1">Cây DOM</a>
+            <ul>
+              <li><a href="#muc1_1">Các mức DOM (DOM levels)</a>
+              <li><a href="#muc1_2">Cây DOM </a>
+
+            </ul>
+          </li>
+          <li><a href="#muc2">Thao tác với ReactDOM</a>
+            <ul>
+              <li><a href="#muc2_1"> Phần tử React (React Elements)</a>
+              <li><a href="#muc2_2">Phương thức render</a>
+            </ul>
+          </li>
+          <li><a href="#muc3">Thao tác với React Component</a>
+            <ul>
+              <li><a href="#muc3_1"> Component là gì?</a>
+              <li><a href="#muc3_2">Tạo một component kiểu Class</a>
+              <li><a href="#muc3_3">Tạo một component kiểu Function</a>
+              <li><a href="#muc3_4">Các component lồng nhau</a>
+              <li><a href="#muc3_5">Các tập tin component</a>
+              <li><a href="#muc3_6">Thuộc tính component và hàm constructor</a>
+            </ul>
+          </li>
+          <li><a href="#muc4">Thao tác với JSX (JavaScript Extension)</a>
+            <ul>
+              <li><a href="#muc4_1"> JSX là gì?</a>
+              <li><a href="#muc4_2">Cú pháp JSX</a>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <h4 id="muc1"><b>I. Cây DOM</b></h4>
+      <p>DOM (Document Object Model) là tiêu chuẩn được định nghĩa bởi W3C (World Wide Web Consortium) cho phép truy cập
+        và
+        thay đổi nội dung, cấu trúc, định dạng của các tài liệu.
+        W3C DOM gồm 3 phần:</p>
+      <ul>
+        <li>Core DOM: tiêu chuẩn cho tất cả các dạng tài liệu.</li>
+        <li>XML DOM: tiêu chuẩn cho tài liệu XML.</li>
+        <li>HTML DOM: tiêu chuẩn cho tài liệu HTML.</li>
+      </ul>
+      <p>Thông tin về DOM có thể tham khảo tại <a href="https://www.w3.org/DOM/">https://www.w3.org/DOM/</a>. Bài này
+        chỉ đề cập đến HTML DOM.</p>
+      <h5 id="muc1_1">Các mức DOM (DOM levels)</h5>
+      <p>DOM mức 0 xuất hiện trước năm 1998, được hỗ trợ chủ yếu khi truy cập các phần tử trên form, các liên kết hay
+        hình
+        ảnh. Năm 1998, khi DOM mức 1 xuất hiện thì DOM mức 0 được biết như là legacy DOM và các đoạn mã dùng cho DOM mức
+        0
+        được biên tập lại cho phù hợp. Ngày nay, mọi trình duyệt lớn đều hỗ trợ DOM mức 0.</p>
+      <p>DOM mức 1 được hỗ trợ bởi hầu hết các trình duyệt lớn. DOM mức 2 xuất hiện năm 2000 và DOM mức 3 xuất hiện năm
+        2004. Các trình duyệt hỗ trợ rất khác nhau các mức DOM. Việc truy cập các phần tử theo các mức DOM trên các
+        trình
+        duyệt khác nhau làm tốn nhiều công sức của người lập trình JavaScript. Thư viện jQuery ra đời đã giúp cho việc
+        truy cập các phần tử DOM trở nên dễ dàng hơn.</p>
+      <h5 id="muc1_2">Cây DOM</h5>
+      <p>DOM thể hiện các tài liệu HTML dưới dạng cấu trúc cây.Ví dụ tài liệu HTML như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;!doctype html&gt;<br>
+
+        &lt;html&gt;<br>
+
+        &nbsp;&lt;head&gt;<br>
+
+        &nbsp;&nbsp;&lt;title&gt;Hello World&lt;/title&gt;<br>
+
+        &nbsp;&lt;/head&gt;<br>
+
+        &nbsp;&lt;body&gt;<br>
+
+        &nbsp;&nbsp;&lt;p&gt;Here's some text.&lt;/p&gt;<br>
+
+        &nbsp;&nbsp;&lt;p&gt;Here's more text.&lt;/p&gt;<br>
+
+        &nbsp;&nbsp;&lt;p&gt;Link to the &lt;a href="http://www.w3.org"&gt;W3&lt;/a&gt;&lt;/p&gt;<br>
+
+        &nbsp;&lt;/body&gt;<br>
+
+        &lt;/html&gt;
+      </div>
+      <p>Cấu trúc DOM cho tài liệu này:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai02/bai02_1.png">
+      </div>
+      <p>Các phần tử như html, head, body, v.v. cũng được gọi là các node (số nhiều là nodes). Các node mức thấp hơn một
+        node đã cho gọi là các hậu duệ (descendant), các node mức kề dưới và có quan hệ với một node gọi là các node con
+        và node đó được gọi là node cha (parent). Các node có cùng cha và cùng mức gọi là anh em (sibling).</p>
+      <p>Ví dụ từ cây DOM trên: các node head, body là con của html; head và body là anh em; title, p, v.v. là hậu duệ
+        của
+        html.</p>
+      <p>Để thao tác với các phần tử hay các node trên DOM, chúng ta dùng các phương thức JavaScript (hay jQuery) thông
+        qua
+        các DOM API.</p>
+      <p>Với React, chúng ta không tương tác với API DOM trực tiếp. Thay vào đó, chúng ta tương tác với DOM ảo (Virtual
+        DOM) hoặc tập hợp các hướng dẫn mà React sẽ
+        sử dụng để xây dựng giao diện người dùng và tương tác với trình duyệt.</p>
+      <p>DOM ảo được tạo thành từ các phần tử React (React Elements), về mặt khái niệm có vẻ giống với các phần tử HTML
+        (HTML ELements), nhưng thực sự là các đối tượng JavaScript. Làm việc trực tiếp với các đối tượng
+        JavaScript nhanh hơn nhiều so với API DOM. Chúng ta thực hiện các thay đổi đối với Đối tượng JavaScript, DOM ảo
+        và
+        React hiển thị những thay đổi đó cho chúng ta bằng cách sử dụng API DOM hiệu quả nhất có thể.</p>
+      <h4 id="muc2"><b>II. Thao tác với ReactDOM</b></h4>
+      <h5 id="muc2_1">Phần tử React (React Elements)</h5>
+      <p>DOM của trình duyệt (hay HTML DOM) được tạo thành từ các phần tử DOM (các phần tử HTML như h1, div,...). Tương
+        tự,
+        React DOM tạo ra các phần tử React. Phần tử DOM và phần tử React có thể trông giống nhau, nhưng chúng thực sự
+        khá
+        khác nhau. Phần tử React là một mô tả về những gì phần tử DOM thực tế sẽ trông như thế nào. Nói cách khác, các
+        phần tử React là các hướng dẫn để tạo các phần tử DOM của trình duyệt.</p>
+      <p>Để tạo các phần tử React chúng ta dùng phương thức createElement từ thư viện React. Ví dụ chúng ta muốn thể
+        hiện đến trình duyệt phần tử HTML DOM </p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;h1&gt;Xin chào.&lt;/h1&gt;
+      </div>
+      <p>Chúng ta sẽ tạo phần tử React</p>
+      <div class="w3-code notranslate htmlHigh">
+        React.createElement("h1", null, "Xin chào.")
+      </div>
+      <p>Hay chúng ta có thể viết:</p>
+      <div class="w3-code notranslate htmlHigh">
+        React.createElement("h1", {}, "Xin chào.")
+      </div>
+      <p>Tham số đầu tiên là phần tử HTML DOM, tham số thứ ba là nội dung và tham số thứ hai là thuộc tính của phần tử
+        HTML DOM (tham số đầu tiên). Trong ví dụ trên vì h1 không chứa thuộc tính nào nên giá trị tham số thứ hai là
+        null.
+        Xét ví dụ chúng ta muốn thể hiện phần tử div như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;div id = "root"&gt;Nội dung.&lt;/div&gt;
+      </div>
+      <p>Chúng ta sẽ tạo phần tử React</p>
+      <div class="w3-code notranslate htmlHigh">
+        React.createElement("div", {id : "root"}, "Nội dung.")
+      </div>
+      <p>Bây giờ chúng ta muốn thể hiện phần tử table</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;table className="App"&gt;<br>
+        &nbsp;&lt;tr&gt;<br>
+        &nbsp; &nbsp;&lt;th&gt;STT&lt;/th&gt;<br>
+        &nbsp; &nbsp;&lt;th&gt;Tên&lt;/th&gt;<br>
+        &nbsp;&lt;/tr&gt;<br>
+        &nbsp;&lt;tr&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;1&lt;/td&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;Minh&lt;/td&gt;<br>
+        &nbsp;&lt;/tr&gt;<br>
+        &nbsp;&lt;tr&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;2&lt;/td&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;Messi&lt;/td&gt;<br>
+        &nbsp;&lt;/tr&gt;<br>
+        &lt;/table&gt;
+      </div>
+      <p>Lưu ý thuộc tính chúng ta dùng là className chứ không phải class. Có thể dùng hàm createElement</p>
+      <div class="w3-code notranslate htmlHigh">
+        React.createElement("table",{className:"App"},<br>
+        &nbsp;&nbsp;React.createElement("tr",{},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("th",{},"STT"),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("th",{},"Tên")),<br>
+        &nbsp;&nbsp;React.createElement("tr",{},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"1"),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"Messi")),<br>
+        &nbsp;&nbsp;React.createElement("tr",{},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"2"),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"Minh")));
+      </div>
+      <p>Tham khảo thêm về createElement tại <a href="https://react-tutorial.app/app.html?id=338">react-tutorial</a></p>
+
+      <h5 id="muc2_2">Hàm render</h5>
+      <p>Mục đích của React chính là kết xuất (render) mã HTML đến các trang web bằng cách dùng hàm render() trong thư
+        viện ReactDOM.</p>
+      <p>Hàm render nhận hai tham số là mã HTML (tham số thứ nhất) và phần tử HTML(tham số thứ hai). Mục đích của hàm
+        render là kết xuất mã HTML từ tham số thứ nhất đến phần tử HTML trong tham số thứ hai.</p>
+      <p>Ví dụ: trong tập tin index.html của chúng ta có phần tử root</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;body&gt;<br>
+        &nbsp;&lt;div id = "root"&gt;&lt;/div&gt;<br>
+        &lt;/body&gt;
+      </div>
+      <p>Bây giờ chúng ta muốn kết xuất đoạn mã sau đến phần tử root:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;h1&gt;Xin chào đến với React!&lt;/h1&gt;
+      </div>
+      <p>Dùng React.createElement như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const myfirstelement = React.createElement("h1", {}, " Xin chào đến với React! ");<br>
+        ReactDOM.render(myfirstelement, document.getElementById('root'));
+      </div>
+      <p>Bây giờ chúng ta muốn thể hiện bảng</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;table className="App"&gt;<br>
+        &nbsp;&lt;tr&gt;<br>
+        &nbsp; &nbsp;&lt;th&gt;STT&lt;/th&gt;<br>
+        &nbsp; &nbsp;&lt;th&gt;Tên&lt;/th&gt;<br>
+        &nbsp;&lt;/tr&gt;<br>
+        &nbsp;&lt;tr&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;1&lt;/td&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;Minh&lt;/td&gt;<br>
+        &nbsp;&lt;/tr&gt;<br>
+        &nbsp;&lt;tr&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;2&lt;/td&gt;<br>
+        &nbsp; &nbsp;&lt;td&gt;Messi&lt;/td&gt;<br>
+        &nbsp;&lt;/tr&gt;<br>
+        &lt;/table&gt;
+      </div>
+      <p>Viết như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const myTable = React.createElement("table",{className:"App"},<br>
+        &nbsp;&nbsp;React.createElement("tr",{},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("th",{},"STT"),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("th",{},"Tên")),<br>
+        &nbsp;&nbsp;React.createElement("tr",{},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"1"),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"Messi")),<br>
+        &nbsp;&nbsp;React.createElement("tr",{},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"2"),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;React.createElement("td",{},"Minh")));<br>
+        ReactDOM.render(myTable, document.getElementById('root'));
+      </div>
+      <p>Kết quả thực thi ứng dụng</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai02/bai02_2.png">
+      </div>
+      <p>Bên cạnh sử dụng phương thức createElement chúng ta có thể sử dụng một giải pháp đơn giản và hiệu quả hơn là
+        kết
+        hợp HTML và JavaScript được gọi là JSX. Chủ đề JSX sẽ được trình bày chi tiết hơn trong mục tiếp theo của tài
+        liệu
+        nhưng chúng ta sẽ có một cái nhìn sơ lược về ứng dụng JSX trong React qua việc viết lại các ví dụ trên.</p>
+      <p>Ví dụ dùng hàm render như sau trong tập tin index.js:</p>
+      <div class="w3-code notranslate htmlHigh">
+        ReactDOM.render(&lt;h1&gt;Xin chào đến với React!&lt;/h1&gt;,
+        document.getElementById('root'));
+      </div>
+      <p>Trong JS, phần tử root được xác định dùng hàm getElementById.</p>
+      <p>Trong ví dụ trên, tham số thứ nhất của render là đoạn mã HTML đơn giản nhưng nếu đoạn mã HTML dài hơn, phức tạp
+        hơn thì việc chuyển trực tiếp mã HTML là không khả thi. Một giải pháp là lưu trữ đoạn mã HTML trong một biến
+        trước
+        khi chuyển đến tham số thứ nhất hàm render:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const myfirstelement = &lt;h1&gt;Xin chào đến với React!&lt;/h1&gt;;<br>
+        ReactDOM.render(myfirstelement, document.getElementById('root'));
+      </div>
+      <p>Bây giờ chúng ta sẽ thực hiện một ví dụ thứ hai bằng cách thêm một phần tử content đến tập tin
+        index.html:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;body&gt;<br>
+        &nbsp;&lt;div id = "root"&gt;&lt;/div&gt;<br>
+        &nbsp;&lt;div id = "content"&gt;&lt;/div&gt;<br>
+        &lt;/body&gt;
+      </div>
+      <p>Trong tập tin index.js thêm nội dung như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br>
+
+        const myfirstelement = &lt;h1&gt;Xin chào đến với React!&lt;/h1&gt;;<br>
+
+        ReactDOM.render(myfirstelement, document.getElementById('root'));<br>
+
+        const mycontent = (<br>
+        &nbsp;&lt;table&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;STT&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;Tên&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;1&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;Minh&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;2&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;Messi&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+
+        &nbsp;&lt;/table&gt;<br>
+        );<br>
+
+        ReactDOM.render(mycontent, document.getElementById('content'));
+      </div>
+      <p>Thực thi ứng dụng</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai02/bai02_3.png">
+      </div>
+      <p>Lưu ý rằng, đoạn mã HTML (table) chúng ta thêm vào viết trên nhiều dòng nên phải đặt trong cặp ngoặc.</p>
+      <h4 id="muc3"><b>III. Thao tác với React Component</b></h4>
+      <h5 id="muc3_1">Component là gì</h5>
+      <p>Component là các đoạn mã độc lập và có thể được sử dụng lại. Khái niệm componet giống khái niệm hàm trong các
+        ngôn
+        ngữ lập trình (bao hàm cả JS) và có giá trị về là các phần tử HTML.</p>
+      <p>Tên của một React component luôn bắt đầu bằng chữ cái in hoa, ví dụ App, Car. Component có hai kiểu: Kiểu
+        Function (như App ở trên) và kiểu Class.</p>
+      <p>Trong <a href="Bai01.html">bài 1</a> chúng ta đã làm quen với tập tin App.js có mã như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import logo from './logo.svg';<br>
+        import './App.css';<br>
+        function App() {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&lt;div className="App"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;h1&gt;Xin chào các bạn đến với React!&lt;/h1&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }<br>
+        export default App;
+      </div>
+      <p>Hàm App() là một component kiểu Function.</p>
+      <h5 id="muc3_2">Tạo một component kiểu Class</h5>
+      <p>Cú pháp giống định nghĩa một class trong JavaScript:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Tên_component extends React.Component{<br>
+        &nbsp;&nbsp;render(){<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;return...<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Một component được tạo bắt đầu bằng từ khóa class theo sau là tên component (chú ý là luôn bắt đầu bằng chữ cái
+        in hoa). Một component kiểu Class thừa kế từ lớp React.Component với lệnh extends React.Component để có thể được
+        phép sử dụng các hàm trong React.Component.
+        Component kiểu Class luôn yêu cầu một hàm render để trả về các phần tử HTML.</p>
+      <p>Ví dụ tạo một componnet Car như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return &lt;h2&gt;Hi, I am a Car!&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p>Sử dụng component theo cú pháp tương tự một phần tử HTML:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;Tên_component /&gt;
+      </div>
+      <p>Ví dụ chúng ta có thể sử dụng component Car trong hàm ReactDOM.render như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        ReactDOM.render(<br>
+        &lt;Car /&gt;, document.getElementById('root'));
+      </div>
+      <h5 id="muc3_3">Tạo một component kiểu Function</h5>
+      <p>Cú pháp giống định nghĩa hàm trong JavaScript:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Tên_component() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return...<br>
+        }
+      </div>
+      <p> Một component được tạo bắt đầu bằng từ khóa function theo sau là tên component (chú ý là luôn bắt đầu bằng chữ
+        cái
+        in hoa) đi kèm với cặp ngoặc tròn (như hàm). Một component kiểu Function trả về trực tiếp phần tử HTML mà không
+        dùng hàm render().</p>
+      <p>Ví dụ viết lại component Car kiểu Function như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Car() {<br>
+        &nbsp;&nbsp;return &lt;h2&gt;Hi, I am also a Car!&lt;/h2&gt;;<br>
+        }
+      </div>
+      Tương tự kiểu Class, sử dụng component theo cú pháp tương tự một phần tử HTML:
+      &lt;Tên_component /&gt;
+      Ví dụ chúng ta có thể sử dụng component Car trong hàm ReactDOM.render như sau:
+      <div class="w3-code notranslate htmlHigh">
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Car /&gt;, document.getElementById('root'));
+      </div>
+      <h5 id="muc3_4">Các component lồng nhau</h5>
+      <p>Chúng ta có thể gọi một component trong một component khác. Ví dụ tạo component tên Garage như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Garage extends React.Component {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Who lives in my Garage?&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Car /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        }<br>
+      </div>
+      <p>Component Garage trả về các phần tử HTML và component Car.</p>
+      <h5 id="muc3_5">Các tập tin component</h5>
+      <p>Để quản lý hiệu quả, các component có thể được tạo trong một tập tin có phần mở rộng .js, ví dụ App.js trong
+        bài
+        1.
+        Một tập tin .js chứa các component có nội dung cơ bản như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br><br>
+
+        Component_1<br>
+        Component_2<br>
+        ...<br><br>
+
+        export default Component_1;
+      </div>
+      <p>Kết thúc tập tin là dòng mã export default và một component bất kỳ.
+        Để sử dụng các component, trong tập tin js (ví dụ index.js) chúng ta phải import các component dùng lệnh:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import Component_1 from './tập tin chứa Component_1';<br>
+        import Component_2 from './tập tin chứa Component_2';<br>
+        ...
+      </div>
+      <p>Ví dụ chúng ta thay đổi nội dung App.js trong bài 1 như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br>
+
+        function Car() {<br>
+        &nbsp;&nbsp;return &lt;h2&gt;Hi, I am also a Car!&lt;/h2&gt;;<br>
+        }<br>
+        class Garage extends React.Component {<br>
+        &nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Who lives in my Garage?&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;}<br>
+        }<br>
+        export default Car;
+      </div>
+      <p>Trong tập tin index.js chúng ta viết lại:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br>
+        import Garage from './App.js'<br>
+        import Car from './App.js'<br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Garage /&gt;, document.getElementById('root'));<br>
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Car /&gt;, document.getElementById('content'));
+      </div>
+      <h5 id="muc3_6">Thuộc tính component và hàm constructor</h5>
+      <p>Một component sẽ chứa các thuộc tính, ví dụ Car chứa các thuộc tính như color, brand, model,...Nếu một
+        component có
+        một hàm constructor thì hàm này sẽ được gọi khi component khởi tạo.</p>
+      <p>Hàm constructor là nơi khởi tạo các thuộc tính của component và trong hàm này chúng ta có thể dùng lệnh gọi hàm
+        super() để thừa kế component cha.</p>
+      <p>Các thuộc tính của component có thể được gọi thông qua đối tượng state hay đối tượng props. Các thuộc tính này
+        sẽ
+        được tìm hiểu trong bài kế tiếp.</p>
+      <p>Ví dụ hàm constructor trong component Car:</p>
+      <div class="w3-code notranslate htmlHigh">
+        class Car extends React.Component {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;constructor() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;render() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &lt;h2&gt;I am a Car!&lt;/h2&gt;;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        }
+      </div>
+      <p> Bằng cách gọi hàm super(), component Car sẽ thực thi hàm constructor và có thể truy cập các hàm từ component
+        cha (trong trường hợp này là React.Component).</p>
+      <h4 id="muc4"><b>IV. Thao tác với JSX (JavaScript Extension)</b></h4>
+      <h5 id="muc4_1">JSX là gì</h5>
+      <p>JSX là viết tắt của JavaScript XML . JSX là một mở rộng của JavaScript phiên bản ES6 cho phép chúng ta viết mã
+        HTML trực tiếp trong mã JavaScript một cách dễ dàng.
+        Nếu không sử dụng JSX, React cũng cho phép chúng ta viết mã HTML bằng cách dùng hàm createElement. Trong ví dụ
+        sau đây
+        chúng ta dùng JSX: </p>
+      <div class="w3-code notranslate htmlHigh">
+        const myfirstelement = &lt;h1&gt;Xin chào đến với React!&lt;/h1&gt;;<br>
+        ReactDOM.render(myfirstelement, document.getElementById('root'));
+      </div>
+      <p>Viết lại dùng hàm createElement:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const myfirstelement = React.createElement('h1', {}, 'Xin chào đến với React!');<br>
+        ReactDOM.render(myfirstelement, document.getElementById('root'));
+      </div>
+      <p>Các tham số hàm createElement:</p>
+      <ul>
+        <li>Tham số thứ nhất là tên phần tử HTML (h1) hay là một React component. React component sẽ được tìm hiểu trong
+          bài kế tiếp còn bài này chúng ta chưa dùng đến.</li>
+        <li>Tham số thứ hai là đối tượng chứa các thuộc tính để chuyển đến một React component. Vì không dùng thuộc tính
+          nào nên đối tượng sẽ là cặp ngoặc rỗng {}. </li>
+        <li>Tham số thứ ba là nội dung của phần tử HTML (nếu tham số thứ nhất là tên phần tử HTML) hay là con của một
+          React component (nếu tham số thứ nhất là một React component).</li>
+      </ul>
+      <p>Từ hai ví dụ trên, có thể thấy việc dùng createElement phức tạp hơn sử dụng JSX.</p>
+      <h5 id="muc4_2">Cú pháp JSX</h5>
+      <h5>Biểu thức trong JSX</h5>
+      <p>Biểu thức có thể là một biến, một thuộc tính hay bất cứ biểu thức nào hợp lệ trong JavaScript. Trong JSX, biểu
+        thức phải được đặt trong cặp ngoặc {}.</p>
+      <p>Ví dụ:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const ketqua = &lt;h1&gt;5 + 3 = {5 + 3}&lt;/h1&gt;;<br>
+        ReactDOM.render(ketqua, document.getElementById('root'));
+      </div>
+      <p>Trong đó 5 + 3 = là một chuỗi thông thường và 5 + 3 trong {} là một biểu thức số học. Khi thưc thi, kết quả:
+      </p>
+      <div class="w3-code notranslate htmlHigh">
+        5 + 3 = 8
+      </div>
+      <p>Biểu thức trong JSX không hỗ trợ lệnh if. Chúng ta phải thực hiện lệnh if bên ngoài JSX:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const x = 5;<br>
+        let text = "Goodbye";<br>
+        if (x &lt; 10) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;text = "Hello"; <br>
+        } <br>
+        const mycondition = &lt;h1&gt;{text}&lt;/h1&gt;;
+      </div>
+      <p>Tuy nhiên, trong trường hợp đơn giản, JSX cho phép chúng ta sử dụng if dưới dạng các biểu thức cấp ba (dùng
+        toán tử ? và :):</p>
+      <div class="w3-code notranslate htmlHigh">
+        const mycondition = &lt;h1&gt;{(x) &lt; 10 ? "Hello" : "Goodbye" }&lt;/h1&gt;;
+      </div>
+      <h5>Đoạn mã HTML</h5>
+      <p>Trong bài 2 có ví dụ minh họa khi thêm một đoạn mã dài và viết trên nhiều hàng:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const mycontent = (<br>
+        &nbsp;&lt;table&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;STT&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;Tên&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;1&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;Minh&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+        &nbsp;&nbsp;&lt;tr&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;2&lt;/th&gt;<br>
+        &nbsp;&nbsp;&nbsp;&lt;th&gt;Messi&lt;/th&gt;<br>
+        &nbsp;&nbsp;&lt;/tr&gt;<br>
+
+        &nbsp;&lt;/table&gt;<br>
+        );<br>
+      </div>
+      <p>Có vài chú ý với các đoạn mã HTML:</p>
+      <ul>
+        <li>Đoạn mã HTML phải được đặt trong cặp ngoặc tròn ()</li>
+        <li>Vì JSX tuân theo nguyên tắc XML nên đoạn mã HTML phải luôn luôn có phần tử mức cao nhất. Trong ví dụ trên là
+          &lt;table&gt;. </li>
+      </ul>
+      <p>Để rõ hơn chúng ta xét ví dụ khác sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;h1&gt;Tôi là tiêu đề.&lt;/h1&gt;<br>
+        &lt;p&gt;Đoạn văn bản 1.&lt;/p&gt;<br>
+        &lt;p&gt;Đoạn văn bản 2.&lt;/p&gt;<br>
+      </div>
+      <p>Chúng ta viết:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const mycode = (<br>
+        &nbsp;&nbsp;&lt;h1&gt;Tôi là tiêu đề.&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&lt;p&gt;Đoạn văn bản 1.&lt;/p&gt;<br>
+        &nbsp;&nbsp;&lt;p&gt;Đoạn văn bản 2.&lt;/p&gt;<br>
+        );
+      </div>
+      <p>Sẽ báo lỗi sau trong Visual Studio Code:</p>
+      <div style="text-align: center;">
+        <img style="width:100%;height: auto;" src="img/bai02/bai02_4.png">
+      </div>
+      <p>Trong trường hợp này thiếu một phần tử cao nhất theo quy tắc trong XML. Xử lý chúng ta chỉ việc thêm phần tử
+        &lt;div&gt;</p>
+      <div class="w3-code notranslate htmlHigh">
+        const mycode = (<br>
+        &nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Tôi là tiêu đề.&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Đoạn văn bản 1.&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Đoạn văn bản 2.&lt;/p&gt;<br>
+        &nbsp;&nbsp;&lt;/div&gt;<br>
+        );
+      </div>
+      <p>Cũng theo luật XML, đoạn mã HTML phải luôn có thẻ kết thúc như
+        &lt;/div&gt; hay &lt;/table&gt; hay tự kết thúc như
+        &lt;input.../&gt;. React sẽ phát sinh lỗi nếu chúng ta chưa có thẻ kết thúc.</p>
+
+      <div class="w3-code notranslate htmlHigh">
+        const myinput = &lt;input type="text" / &gt;;
+      </div>
+      <p>Sử dụng thuộc tính className thay vì class. Nguyên nhân vì class trùng với từ khóa class trong JavaScript. Như
+        vậy,
+        thay vì viết:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const myelement = &lt;h1 class = "myclass"&gt;Hello World&lt;/h1&gt;;
+      </div>
+      chúng ta sẽ viết thành:
+      <div class="w3-code notranslate htmlHigh">
+        const myelement = &lt;h1 className = "myclass"&gt;Hello World&lt;/h1&gt;;
+      </div>
+
+
+
+
+
+
+
+      <div class="w3-center">
+        <div class="pagination">
+          <a href="Bai01.html">Bài trước</a>
+          <a href="Bai03.html">Bài tiếp theo</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- End page content -->
+  </div>
+
+  <script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript"></script>
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Phần button top
+    var mybutton = document.getElementById("myBtn");
+
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+</body>
+
+</html>
