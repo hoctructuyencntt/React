@@ -527,8 +527,10 @@
         &nbsp;&nbsp;return &lt;h2&gt;Hi, I am also a Car!&lt;/h2&gt;;<br>
         }
       </div>
-      Tương tự kiểu Class, sử dụng component theo cú pháp tương tự một phần tử HTML:
-      &lt;Tên_component /&gt;
+      <p>Tương tự kiểu Class, sử dụng component theo cú pháp tương tự một phần tử HTML:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;Tên_component /&gt;
+      </div>
       Ví dụ chúng ta có thể sử dụng component Car trong hàm ReactDOM.render như sau:
       <div class="w3-code notranslate htmlHigh">
         ReactDOM.render(<br>
@@ -550,9 +552,8 @@
       </div>
       <p>Component Garage trả về các phần tử HTML và component Car.</p>
       <h5 id="muc3_5">Các tập tin component</h5>
-      <p>Để quản lý hiệu quả, các component có thể được tạo trong một tập tin có phần mở rộng .js, ví dụ App.js trong
-        bài
-        1.
+      <p>Để quản lý hiệu quả, các component có thể được tạo trong một tập tin có phần mở rộng .js, ví dụ App.js trong <a
+          href="Bai01.html">bài 1</a>.
         Một tập tin .js chứa các component có nội dung cơ bản như sau:</p>
       <div class="w3-code notranslate htmlHigh">
         import React from 'react';<br>
@@ -571,7 +572,7 @@
         import Component_2 from './tập tin chứa Component_2';<br>
         ...
       </div>
-      <p>Ví dụ chúng ta thay đổi nội dung App.js trong bài 1 như sau:</p>
+      <p>Ví dụ chúng ta thay đổi nội dung App.js trong <a href="Bai01.html">bài 1</a> như sau:</p>
       <div class="w3-code notranslate htmlHigh">
         import React from 'react';<br>
         import ReactDOM from 'react-dom';<br>
@@ -626,7 +627,7 @@
         cha (trong trường hợp này là React.Component).</p>
       <h4 id="muc4"><b>IV. Thao tác với JSX (JavaScript Extension)</b></h4>
       <h5 id="muc4_1">JSX là gì</h5>
-      <p>JSX là viết tắt của JavaScript XML . JSX là một mở rộng của JavaScript phiên bản ES6 cho phép chúng ta viết mã
+      <p>JSX là viết tắt của JavaScript XML. JSX là một mở rộng của JavaScript phiên bản ES6 cho phép chúng ta viết mã
         HTML trực tiếp trong mã JavaScript một cách dễ dàng.
         Nếu không sử dụng JSX, React cũng cho phép chúng ta viết mã HTML bằng cách dùng hàm createElement. Trong ví dụ
         sau đây
@@ -679,7 +680,7 @@
         const mycondition = &lt;h1&gt;{(x) &lt; 10 ? "Hello" : "Goodbye" }&lt;/h1&gt;;
       </div>
       <h5>Đoạn mã HTML</h5>
-      <p>Trong bài 2 có ví dụ minh họa khi thêm một đoạn mã dài và viết trên nhiều hàng:</p>
+      <p>Xét ví dụ minh họa khi thêm một đoạn mã dài và viết trên nhiều hàng:</p>
       <div class="w3-code notranslate htmlHigh">
         const mycontent = (<br>
         &nbsp;&lt;table&gt;<br>
