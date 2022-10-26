@@ -118,14 +118,15 @@
         class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu"> X </a>
       <!--<h4><b>Giáo trình</b></h4>-->
     </div>
-     <div class="w3-bar-block">
+    <div class="w3-bar-block">
       <a href="Bai01.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 1. Giới thiệu
         React</a>
       <a href="Bai02.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 2: Xây dựng giao diện (UI)
         ứng dụng web với React</a>
-      <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 3: Quản lý dữ liệu ứng dụng
+      <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 3: Quản lý dữ
+        liệu ứng dụng
         web với React</a>
-       <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành React</a>
+      <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành React</a>
       <!--<a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ">Bài 4: Redux và
         React Redux</a>-->
       <!--<a href="Bai05.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 5: Kiểm thử (Testing)</a>-->
@@ -178,7 +179,11 @@
             <ul>
               <li><a href="#muc3_1"> Sự kiện (events) và trình xử lý sự kiện (event handlers)</a>
               <li><a href="#muc3_2">Từ khóa this và hàm mũi tên</a>
-
+              <li><a href="#muc3_3">Kết xuất theo điều kiện</a>
+              <li><a href="#muc3_4">Kết xuất danh sách (List)</a>
+              <li><a href="#muc3_5">Làm việc với biểu mẫu (Form)</a>
+              <li><a href="#muc3_6">React Router</a>
+              <li><a href="#muc3_7">Sử dụng CSS trong React</a>
             </ul>
           </li>
         </ol>
@@ -546,11 +551,11 @@
       </div>
       <p>Kết quả:</p>
       <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai03/bai03_1.png">
+        <img style="height: auto;" src="img/bai03/bai03_1.png">
       </div>
       <p>Nếu nhấn nút Change Car</p>
       <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai03/bai03_2.png">
+        <img style="height: auto;" src="img/bai03/bai03_2.png">
       </div>
       <p>Hai thuộc tính newbrand và newmodel không được liên quan gì vì chúng thuộc quyền quản lý của props. Bây giờ
         thêm phương thức getDerivedStateFromProps() đến component Car:</p>
@@ -589,7 +594,7 @@
       </div>
       <p>Kết quả:</p>
       <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai03/bai03_3.png">
+        <img style="height: auto;" src="img/bai03/bai03_3.png">
       </div>
       <p>Dù chúng ta nhấn nút Change Car cũng không thay đổi gì.
         Phương thức khác trong giai đoạn Updating là shouldComponentUpdate() quyết định liệu component có tiếp tục cập
@@ -693,11 +698,11 @@
       </div>
       <p>Thực thi</p>
       <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai03/bai03_4.png">
+        <img style="height: auto;" src="img/bai03/bai03_4.png">
       </div>
       <p>Nhấn Change Car</p>
       <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai03/bai03_5.png">
+        <img style="height: auto;" src="img/bai03/bai03_5.png">
       </div>
       <h5 id="muc2_3">Giai đoạn Unmounting</h5>
       <p>Đây là giai đoạn khi một component được xóa khỏi DOM. Tại giai đoạn này chỉ có một phương thức là
@@ -803,9 +808,648 @@
       </div>
       <p>React cũng có thể cho chúng ta biết chính xác đối tượng sự kiện chúng ta đang làm việc. Có thể tham khảo tại <a
           href="https://www.w3schools.com/react/showreact.asp?filename=demo2_react_events_event">W3Schools</a>.</p>
+      <h5 id="muc3_3">Kết xuất theo điều kiện</h5>
+      <p>Trong React để kết xuất các component theo điều kiện, chúng ta thực hiện bằng nhiều cách khác nhau.</p>
+      <h5>Lệnh if</h5>
+      <p>Có thể dùng lệnh if trong javaScript để truy xuất các component. Ví dụ chúng ta có 2 component sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Fail() {<br>
+        &nbsp;&nbsp;return &lt;h1&gt;BẠN ĐÃ RỚT RỒI!&lt;/h1&gt;;<br>
+        }<br><br>
 
+        function Pass() {<br>
+        &nbsp;&nbsp;return &lt;h1&gt;CHÚC MỪNG BẠN ĐÃ ĐẬU!&lt;/h1&gt;;<br>
+        }
+      </div>
+      <p>Chúng ta tạo ra component Exam để kết xuất các component Fail hay Pass dùng lệnh if như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Exam(props) {<br>
+        &nbsp;&nbsp;const isExam = props.isExam;<br>
+        &nbsp;&nbsp;if (isExam) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return &lt;Pass /&gt;;<br>
+        &nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;return &lt;Fail /&gt;;<br>
+        }
+      </div>
+      <p>Kiểm tra kết xuất Exam đến DOM</p>
+      <div class="w3-code notranslate htmlHigh">
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Exam isExam={false} /&gt;, document.getElementById("root"));
+      </div>
+      <p>Kết quả</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_7.png">
+      </div>
+      <p>Kiểm tra kết xuất Exam đến DOM</p>
+      <div class="w3-code notranslate htmlHigh">
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Exam isExam={true} /&gt;, document.getElementById("root"));
+      </div>
+      <p>Kết quả</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_8.png">
+      </div>
+      <h5>Toán tử ? :</h5>
+      <p>Trong JS, toán tử ba ngôi ?: là một biến thể của lệnh if else. Các component cũng có thể được kết xuất dùng
+        toán
+        tử ba ngôi ? : Ví dụ component Exam có thể được viết lại như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Exam(props) {<br>
+        &nbsp;&nbsp;const isExam = props.isExam;<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isExam ? &lt;Pass /&gt; : &lt;Fail /&gt;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }
+      </div>
+      <p>Lưu ý rằng biểu thức dùng toán tử ba ngôi ?: là toán tử JS nên được đặt trong cặp ngoặc móc {}.</p>
+      <h5>Toán tử &&</h5>
+      <p>Các component cũng có thể được kết xuất theo điều kiện trong React dùng toán tử &&. Ví dụ</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Garage(props) {<br>
+        &nbsp;&nbsp;const cars = props.cars;<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Sưu tập xe&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{cars.length > 0 &&<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bạn có {cars.length} xe trong bộ sưu tập.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &lt;/&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }<br>
+        const cars = ['Ford', 'BMW', 'Audi'];<br>
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Garage cars={cars} /&gt;, document.getElementById("root"));
+      </div>
+      <p>Lưu ý rằng biểu thức dùng toán tử && là toán tử JS nên được đặt trong cặp ngoặc móc {}.
+        Trong ví dụ trên, nếu cars.length hay số phần tử mảng cars lớn hơn 0 thì sẽ kết xuất
+        &lt;h2&gt; đến DOM. Kết quả:</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_9.png">
+      </div>
+      <p>Bây giờ, kiểm tra với mảng cars rỗng</p>
+      <div class="w3-code notranslate htmlHigh">
+        const cars = [];<br>
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Garage cars={cars} /&gt;, document.getElementById("root"));
+      </div>
+      <p>Kết quả</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_10.png">
+      </div>
+      <h5 id="muc3_4">Kết xuất danh sách (List)</h5>
+      <p>Trong React để kết xuất một danh sách chúng ta ưu tiên dùng phương thức map().
+        Phương thức map() cho phép chúng ta chạy một hàm trên mỗi giá trị trong hàm và trả về một mảng mới. Xem xét ví
+        dụ sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Car(props) {<br>
+        &nbsp;&nbsp;return &lt;li&gt;{props.brand}&lt;/li&gt;;<br>
+        }<br><br>
 
+        function Garage() {<br>
+        &nbsp;&nbsp;const cars = ['Ford', 'BMW', 'Audi'];<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&lt;&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;h1&gt;Bộ sưu tập xe của tôi gồm:&lt;/h1&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;ul&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;{cars.map((car) => &lt;Car brand={car}
+        /&gt;)}<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&lt;/ul&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&lt;/&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }<br>
+        ReactDOM.render(&lt;Garage /&gt;, document.getElementById("root"));
+      </div>
+      <p>Kết quả:</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_11.png">
+      </div>
+      <p>Các mục (brand) trong danh sách trên không thể được kiểm soát bởi React khi chúng thay đổi, thêm hay xóa. Để
+        giám
+        sát các mục trong danh sách, React dùng key.</p>
+      <h5>Key</h5>
+      <p>Các key giúp React xác định những mục nào đã thay đổi, được thêm vào hoặc bị loại bỏ. Các key phải được cấp cho
+        các phần tử bên trong mảng để cung cấp cho các phần tử một danh tính ổn định. Thông thường chúng ta dùng id là
+        key.</p>
+      <p>Ví dụ mảng cars từ ví dụ trên:</p>
+      <div class="w3-code notranslate htmlHigh">
+        const cars = [<br>
+        &nbsp;&nbsp;{ id: 1, brand: 'Ford' },<br>
+        &nbsp;&nbsp;{ id: 2, brand: 'BMW' },<br>
+        &nbsp;&nbsp;{ id: 3, brand: 'Audi' }<br>
+        ];
+      </div>
+      <p>Các key chỉ có ý nghĩa trong ngữ cảnh xung quanh mảng. Xét ví dụ về các component Car và Garage, key được sử
+        dụng
+        trong Garage vì có khai báo mảng thay vì dùng key trong Car. Car và Garage sẽ được viết lại như sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Car(props) {<br>
+        &nbsp;&nbsp;return &lt;li&gt;{props.brand}&lt;/li&gt;;<br>
+        }<br><br>
 
+        function Garage() {<br>
+        &nbsp;&nbsp;const cars = [<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{ id: 1, brand: 'Ford' },<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{ id: 2, brand: 'BMW' },<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;{ id: 3, brand: 'Audi' }<br>
+        &nbsp;&nbsp;];<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Bộ sưu tập xe của tôi gồm:&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{cars.map((car) => &lt;Car key={car.id} brand={car.brand}<br>
+        /&gt;)}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }
+      </div>
+      <p>Các key được sử dụng trong các mảng phải là duy nhất giữa các anh chị em của chúng. Tuy nhiên, chúng không cần
+        phải là duy nhất với phạm vi toàn cục. Chúng ta có thể sử dụng các key giống nhau khi tạo ra hai mảng khác nhau.
+        Ví dụ sau hai mảng anh em sidebar và content dùng chung một mảng posts toàn cục nên có key giống nhau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        function Blog(props) {<br>
+        &nbsp;&nbsp;const sidebar = (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.posts.map((post) =><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li key={post.id}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{post.title}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+        &nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;const content = props.posts.map((post) =><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div key={post.id}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;{post.title}&lt;/h3&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;{post.content}&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;);<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{sidebar}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{content}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }<br><br>
+
+        const posts = [<br>
+        &nbsp;&nbsp;{ id: 1, title: 'Hello World', content: 'Welcome to learning React!' },<br>
+        &nbsp;&nbsp;{ id: 2, title: 'Installation', content: 'You can install React from npm.' }<br>
+        ];<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;Blog posts={posts} /&gt;, document.getElementById("root"));
+      </div>
+      <p>Kết quả</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_12.png">
+      </div>
+      <h5 id="muc3_5">Làm việc với biểu mẫu (Form)</h5>
+      <p>Giống như HTML, React sử dụng các biểu mãu cho phép người dùng tương tác với trang web. Ví dụ sau đây tạo một
+        form đơn giản cho phép người dùng nhập tên</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br>
+
+        function MyForm() {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;form&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Enter your name:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/label&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>
+        &nbsp;&nbsp;)<br>
+        }<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));<br>
+      </div>
+
+      <p>Chú ý, ví dụ trên sử dụng React Function thay vì React Class như các bài trên. Thực thi</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_13.png">
+      </div>
+      <p>Nếu nhập thông tin bất kỳ và nhấn Enter, kết quả trang sẽ được tải lại và xuất hiện dấu ? trên URL</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_14.png">
+      </div>
+      <p>Bình thường, biểu mẫu sẽ được gửi và trang sẽ làm mới. Nhưng điều này nói chung không phải là những gì chúng ta
+        muốn xảy ra trong React. Chúng ta muốn ngăn chặn hành vi mặc định này và để React kiểm soát biểu mẫu.</p>
+
+      <h5>Xử lý biểu mẫu</h5>
+      <p>Xử lý biểu mẫu là về cách bạn xử lý dữ liệu khi nó thay đổi giá trị hoặc được gửi. Trong HTML, dữ liệu biểu mẫu
+        thường được xử lý bởi DOM và trong React, dữ liệu biểu mẫu thường được xử lý bởi các component.
+        Khi dữ liệu được xử lý bởi các component, tất cả dữ liệu được lưu trữ ở trạng thái component. Chúng ta kiểm soát
+        các thay đổi bằng cách thêm trình xử lý sự kiện trong thuộc tính onChange, và chúng ta có thể sử dụng useState
+        Hook để theo dõi từng giá trị đầu vào. useState chỉ được sử dụng trong React Function (nên các ví dụ trong bài
+        này
+        chỉ dùng React Function) và sẽ được đề cập chi tiết hơn trong phần React Hook. Ví dụ về sử dụng onChange và
+        useState trong biểu mẫu:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";<br>
+        import ReactDOM from 'react-dom';<br>
+
+        function MyForm() {<br>
+        &nbsp;&nbsp;const [name, setName] = useState("");<br><br>
+
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;form&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Enter your name:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" value={name} onChange={(e)=>
+        setName(e.target.value)}/><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/label&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>
+        &nbsp;&nbsp;)<br>
+        }<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
+      </div>
+      <p>Chúng ta cũng có thể kiểm soát các hoạt động gửi dữ liệu từ biểu mẫu (submit action) bằng cách thêm trình xử lý
+        sự
+        kiện trong thuộc tính onSubmit cho
+        &lt;form&gt;. Ví dụ minh họa:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";<br>
+        import ReactDOM from 'react-dom';<br>
+
+        function MyForm() {<br>
+        &nbsp;&nbsp;const [name, setName] = useState("");<br>
+
+        &nbsp;&nbsp;const handleSubmit = (event) => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;alert(`The name you entered was: ${name}`);<br>
+        &nbsp;&nbsp;}<br>
+
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;form onSubmit={handleSubmit}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Enter your name:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" value={name}
+        onChange={(e)=>setName(e.target.value)}/&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/label&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>
+        &nbsp;&nbsp;)<br>
+        }<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
+      </div>
+      <p>Kết quả thực thi:</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_15.png">
+      </div>
+      <h5>Biểu mẫu nhiều trường thông tin</h5>
+      <p>Chúng ta có thể kiểm soát các giá trị của nhiều trường đầu vào bằng cách thêm thuộc tính name cho mỗi phần
+        tử.
+        Kế tiếp, sẽ khởi tạo trạng thái với một đối tượng rỗng. Để truy cập các trường trong trình xử lý sự kiện,
+        chúng
+        ta sử dụng cú pháp event.target.name và event.target.value.
+        Để cập nhật trạng thái, hãy sử dụng dấu ngoặc vuông [ký hiệu dấu ngoặc vuông] xung quanh tên thuộc tính.</p>
+      <p>Ví dụ sau đây tạo một biểu mẫu 2 trường username và age:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";<br>
+        import ReactDOM from "react-dom";<br>
+
+        function MyForm() {<br>
+        &nbsp;&nbsp;const [inputs, setInputs] = useState({});<br><br>
+
+        &nbsp;&nbsp;const handleChange = (event) => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;const name = event.target.name;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;const value = event.target.value;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;setInputs(values => ({ ...values, [name]: value }))<br>
+        &nbsp;&nbsp;}<br><br>
+
+        &nbsp;&nbsp;const handleSubmit = (event) => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;event.preventDefault();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;alert(inputs);<br>
+        &nbsp;&nbsp;}<br><br>
+
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;form onSubmit={handleSubmit}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Enter your name:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" name="username" value={inputs.username ||
+        "" } onChange={handleChange} /&gt;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/label&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Enter your age:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="number" name="age" value={inputs.age || "" }
+        onChange={handleChange} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/label&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>
+        &nbsp;&nbsp;)<br>
+        }<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
+      </div>
+      <h5> Sử dụng Textarea</h5>
+      <p>Textarea trong HTML sử dụng phần tử &lt;textarea&gt;, ví dụ:</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;textarea&gt;<br>
+        &nbsp;&nbsp;Content of the textarea.<br>
+        &lt;/textarea&gt;
+      </div>
+      <p>Textarea trong React có một ít khác biệt. Trong React, textarea được đặt trong một thuộc tính giá trị. Chúng ta
+        sẽ dùng useState Hook để quản lý giá trị của textarea như ví dụ sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";<br>
+        import ReactDOM from "react-dom";<br>
+
+        function MyForm() {<br>
+        &nbsp;&nbsp;const [textarea, setTextarea] = useState("The content of a textarea goes in the value
+        attribute");<br><br>
+
+        &nbsp;&nbsp;const handleChange = (event) => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;setTextarea(event.target.value)<br>
+        &nbsp;&nbsp;}<br><br>
+
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;form&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;textarea value={textarea} onChange={handleChange} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>
+        &nbsp;&nbsp;)<br>
+        }<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
+      </div>
+      <h5>Select</h5>
+      <p>Tương tự textarea, select cũng được sử dụng với một ít khác biệt so với HTML như ví dụ sau:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";<br>
+        import ReactDOM from "react-dom";<br>
+
+        function MyForm() {<br>
+        &nbsp;&nbsp;const [myCar, setMyCar] = useState("Volvo");<br><br>
+
+        &nbsp;&nbsp;const handleChange = (event) => {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;setMyCar(event.target.value)<br>
+        &nbsp;&nbsp;}<br><br>
+
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;form&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;select value={myCar} onChange={handleChange}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="Ford"&gt;Ford&lt;/option&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="Volvo"&gt;Volvo&lt;/option&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="Fiat"&gt;Fiat&lt;/option&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>
+        &nbsp;&nbsp;)<br>
+        }<br><br>
+
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
+      </div>
+
+      <p>Thực thi</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_16.png">
+      </div>
+      <h5 id="muc3_6">React Router</h5>
+      <p>Khi bắt đầu, hầu hết các trang web bao gồm một loạt các trang mà người dùng có thể điều hướng (navigating) bằng
+        cách yêu cầu và mở các tập tin riêng biệt. Vị trí của tập tin hoặc tài nguyên hiện tại đã được liệt kê trong
+        thanh
+        vị trí (loaction bar) của trình duyệt. Các nút chuyển tiếp (forward) và quay lại (back) của trình duyệt sẽ hoạt
+        động như mong đợi. Đánh dấu (bookmark) nội dung một website sẽ cho phép người dùng lưu tham chiếu đến một tập
+        tin
+        cụ thể có thể được tải lại theo yêu cầu của người dùng. Website dựa trên trang hoặc do máy chủ hiển thị, tính
+        năng
+        điều hướng và các tính năng lịch sử (history) của trình duyệt sẽ hoạt động như mong đợi.</p>
+      <p>Tuy nhiên, trong ứng dụng một trang (single-page app), tất cả các tính năng này đều trở nên có vấn đề. Hãy nhớ
+        rằng, trong một ứng dụng một trang, mọi thứ đều diễn ra trên cùng một trang. JavaScript tải thông tin và thay
+        đổi
+        giao diện người dùng. Các tính năng như lịch sử trình duyệt, đánh dấu trang, nút chuyển tiếp và nút quay lại sẽ
+        không hoạt động nếu không có giải pháp định tuyến (routing solution). Định tuyến (Routing) là quá trình xác định
+        các điểm cuối (endpoints) cho các yêu cầu của khách hàng của bạn. Các điểm cuối này hoạt động cùng với các đối
+        tượng lịch sử và vị trí của trình duyệt. Chúng được sử dụng để xác định nội dung được yêu cầu để JavaScript có
+        thể
+        tải và hiển thị giao diện người dùng thích hợp. Không giống như Angular, Ember hoặc Backbone, React không đi kèm
+        với một bộ định tuyến tiêu chuẩn. Nhận thức được tầm quan trọng của giải pháp định tuyến, các kỹ sư Michael
+        Jackson và Ryan Florence đã tạo ra một cái tên đơn giản là React Router. React Router đã được thông qua bởi cộng
+        đồng như một giải pháp định tuyến phổ biến cho các ứng dụng React. Nó được sử dụng bởi các công ty bao gồm Uber,
+        Zendesk, PayPal, Vimeo,...</p>
+      <h5>Cài React Router</h5>
+      <p>Để cài đặt React Router phiên bản mới nhất, chúng ta gõ lệnh sau từ thư mục gốc của ứng dụng</p>
+      <div class="w3-code notranslate htmlHigh">
+        npm i -D react-router-dom@latest
+      </div>
+      <h5>Ứng dụng sử dụng React Router</h5>
+      <p>Để tạo một ứng dụng định tuyến các trang chúng ta bắt đầu bằng cấu trúc các tập tin. Trong thư mục src tạo thư
+        mục
+        con tên pages chứa các tập tin như sau:</p>
+      <ul>
+        <li>Layout.js</li>
+        <li>Home.js</li>
+        <li>Blogs.js</li>
+        <li>Contact.js</li>
+        <li>NoPage.js</li>
+      </ul>
+      <p>Mỗi tập tin sẽ chứa một component đơn giản. Nội dung các tập tin như sau:</p>
+      <p>Layout.js</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { Outlet, Link } from "react-router-dom";<br><br>
+
+        const Layout = () => {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;uv&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Link to="/"&gt;Home&lt;/Link&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Link
+        to="/blogs"&gt;Blogs&lt;/Link&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Link
+        to="/contact"&gt;Contact&lt;/Link&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/uv&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/nav&gt;<br><br>
+
+        &lt;Outlet /&gt;<br>
+        &lt;/&gt;<br>
+        )<br>
+        };<br>
+
+        export default Layout;
+      </div>
+      <p>Thành phần Layout có các phần tử &lt;Outlet&gt; và
+        &lt;Link&gt;</p>
+      <ul>
+        <li>
+          &lt;Outlet&gt; hiển thị tuyến đường hiện tại đã chọn.
+        </li>
+
+        <li>
+          &lt;Link&gt; được sử dụng để đặt URL và theo dõi lịch sử duyệt web.
+        </li>
+      </ul>
+      <p>Bất cứ khi nào chúng ta liên kết đến một đường dẫn nội bộ, chúng ta sẽ sử dụng
+        &lt;Link&gt; thay vì &lt;a href=""&gt;.
+      </p>
+      <p>Layout là một component được chia sẻ để chèn nội dung chung trên tất cả các trang, chẳng hạn như menu điều
+        hướng.</p>
+
+      <p>Home.js</p>
+      <div class="w3-code notranslate htmlHigh">
+        const Home = () => {<br>
+        &nbsp;&nbsp;return &lt;h1&gt;Home&lt;/h1&gt;;<br>
+        };<br>
+
+        export default Home;
+      </div>
+
+      <p>Blogs.js</p>
+      <div class="w3-code notranslate htmlHigh">
+        const Blogs = () => {<br>
+        return &lt;h1&gt;Blog Articles&lt;/h1&gt;;<br>
+        };<br><br>
+
+        export default Blogs;
+      </div>
+      <p>Contact.js</p>
+      <div class="w3-code notranslate htmlHigh">
+        const Contact = () => {<br>
+        &nbsp;&nbsp;return &lt;h1&gt;Contact Me&lt;/h1&gt;;<br>
+        };<br>
+
+        export default Contact;
+      </div>
+      <p>NoPage.js</p>
+      <div class="w3-code notranslate htmlHigh">
+        const NoPage = () => {<br>
+        &nbsp;&nbsp;return &lt;h1&gt;404&lt;/h1&gt;;<br>
+        };<br><br>
+
+        export default NoPage;
+      </div>
+      <p> Và tập tin index.js của chúng ta sẽ có nội dung sau</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom';<br>
+        import { BrowserRouter, Routes, Route } from "react-router-dom";<br>
+        import Layout from "./pages/Layout";<br>
+        import Home from "./pages/Home";<br>
+        import Blogs from "./pages/Blogs";<br>
+        import Contact from "./pages/Contact";<br>
+        import NoPage from "./pages/NoPage";<br><br>
+
+        export default function RouterApp() {<br>
+        &nbsp;&nbsp;return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;BrowserRouter&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Routes&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="/" element={&lt;Layout
+        /&gt;}&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route index element={&lt;Home /&gt;}
+        /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="blogs"
+        element={&lt;Blogs /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="contact"
+        element={&lt;Contact /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Route path="*" element={&lt;NoPage
+        /&gt;} /&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Route&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Routes&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/BrowserRouter&gt;<br>
+        &nbsp;&nbsp;);<br>
+        }<br>
+        ReactDOM.render(<br>
+        &nbsp;&nbsp;&lt;RouterApp /&gt;, document.getElementById("root"));
+      </div>
+      <p>Trước tiên, chúng ta đặt toàn bộ nội dung vào trong phần tử &lt;BrowserRouter&gt;. Sau đó, chúng ta định nghĩa
+        &lt;Routes&gt; là các tuyến chúng ta dùng để điều hướng. Một ứng dụng có thể có nhiều &lt;Routes&gt;. Ví dụ này
+        chúng
+        ta chỉ sử dụng một. Trong mỗi phần tử &lt;Routes&gt; sẽ chứa nhiều phần tử &lt;Route&gt;.</p>
+      <p>Các &lt;Route&gt; có thể được lồng vào nhau. &lt;Route&gt; đầu tiên có một đường dẫn / và hiển thị thành phần
+        Layout. Đây là phần tử &lt;Route&gt; cha hay tuyến cha.</p>
+      <p>Các &lt;Route&gt; lồng nhau kế thừa và thêm vào &lt;Route&gt; cha. Vì vậy, đường dẫn blogs (thuộc tính
+        path) được kết hợp với cha và trở thành / blogs.</p>
+      <p>Tuyến thành phần Home không có đường dẫn nhưng có thuộc tính index. Điều này có ý nghĩa
+        rằng đây là tuyến mặc định cho tuyến cha, tức là chỉ cần dấu /.</p>
+      <p>Thiết lập thuộc tính path đến * sẽ hoạt động như một phương thức truy cập cho mọi URL
+        không xác định. Điều này là tuyệt vời cho một trang lỗi 404.</p>
+      <p>Thuộc tính element của &lt;Route&gt; chỉ component cần định tuyến đến.</p>
+      <p>Thực thi ứng dụng</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_17.png">
+      </div>
+      <p>Nhấn liên kết Blogs</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_18.png">
+      </div>
+      <p>Nhấn liên kết Contact</p>
+      <div style="text-align: center;">
+        <img style="height: auto;" src="img/bai03/bai03_19.png">
+      </div>
+      <h5 id="muc3_7">Sử dụng CSS trong React </h5>
+      <p>Sử dụng CSS trong React có nhiều cách nhưng có 3 cách phổ biến sau:</p>
+      <ul>
+        <li>Chèn định nghĩa CSS trực tiếp (Inline Styling)</li>
+        <li>Tạo một tập tin có phần mở rộng là .css (CSS Stylesheets)</li>
+        <li>Tạo mô-đun CSS (CSS Modules)</li>
+      </ul>
+      <h5>Chèn định nghĩa CSS trực tiếp (Inline Styling)</h5>
+      <p>Để chèn trực tiếp định nghĩa CSS dùng thuộc tính style trong React chúng ta phải dùng đối tượng JavaScript. Xét
+        ví
+        dụ sau (Mã hoàn chỉnh <a
+          href="https://www.w3schools.com/react/showreact.asp?filename=demo2_react_css_inline">tại đây</a>):</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;h1 style={{color: "red" }}&gt;Hello Style!&lt;/h1&gt;
+      </div>
+      <p>Chú ý thuộc tính style của h1:</p>
+      <ul>
+        <li>Sử dụng cặp ngoặc {} bên ngoài vì chúng ta sử dụng JavaScript trong JSX. Tham khảo lại JSX <a
+            href="https://hoctructuyencntt.github.io/React/Bai02.html#muc4">tại đây</a>.</li>
+        <li>Sử dụng cặp ngoặc {} bên trong cho khai báo đối tượng JS. Tham khảo lại đối tượng trong JS <a
+            href="https://hoctructuyencntt.com/doi-tuong-object-trong-js/">tại đây</a>.</li>
+      </ul>
+      <p>Các thuộc tính trong CSS với hai từ trở lên cách nhau bởi dấu gạch ngang, ví dụ background-color, khi viết lại
+        dưới dạng đối tượng JS phải tuân theo quy tắc (camel case syntax):</p>
+      <ul>
+        <li>Các từ viết liền nhau.</li>
+        <li>Từ đầu tiên viết thường, các từ tiếp theo chữ cái đầu tiên viết hoa.</li>
+      </ul>
+      <p>Ví dụ background-color viết lại thành backgroundColor (Mã hoàn chỉnh <a
+          href="https://www.w3schools.com/react/showreact.asp?filename=demo2_react_css_camelcase">tại đây</a>):</p>
+      <div class="w3-code notranslate htmlHigh">
+        &lt;h1 style={{backgroundColor: "lightblue" }}&gt;Hello Style!&lt;/h1&gt;
+      </div>
+      <p>Nếu đối tượng có nhiều thông tin, chúng ta có thể tạo riêng đối tượng này như myStyle sau (Mã hoàn chỉnh <a
+          href="https://www.w3schools.com/react/showreact.asp?filename=demo2_react_css_inline_object">tại đây</a>):</p>
+      <div class="w3-code notranslate htmlHigh">
+        const myStyle = {<br>
+        &nbsp;&nbsp;color: "white",<br>
+        &nbsp;&nbsp;backgroundColor: "DodgerBlue",<br>
+        &nbsp;&nbsp;padding: "10px",<br>
+        &nbsp;&nbsp;fontFamily: "Sans-Serif"<br>
+        };<br>
+        ...<br>
+        &lt;h1 style={myStyle}&gt;Hello Style!&lt;/h1&gt;
+      </div>
+      <h5>Tạo một tập tin có phần mở rộng là .css (CSS Stylesheets)</h5>
+      <p>Khai báo CSS và lưu trong một tập tin có phần mở rộng là .css, ví dụ App.css, sau đó liên kết đến ứng dụng
+        React
+        dùng lệnh import. Ví dụ liên kết tập tin App.css trong tập tin index.js và hai tập tin này được lưu trong cùng
+        thư
+        mục:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import React from 'react';<br>
+        import ReactDOM from 'react-dom/client';<br>
+        import './App.css';<br>
+      </div>
+      <h5>Tạo mô-đun CSS (CSS Modules)</h5>
+      <p>Nếu ứng dụng React sử dụng các component được định nghĩa trong nhiều tập tin khác nhau, một giải pháp dùng CSS
+        là
+        dùng các mô-đun CSS. Chi tiết về mô-đun CSS tham khảo <a href="https://github.com/css-modules/css-modules">tại
+          đây</a>.
+      </p>
 
 
       <div class="w3-center">
