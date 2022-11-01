@@ -165,7 +165,8 @@
               <li><a href="#muc1_2">Đối tượng props </a>
               <li><a href="#muc1_3"> Đối tượng state </a>
               <li><a href="#muc1_4">Chuyển state lên trên (Lifting state up)</a>
-              <li><a href="#muc1_5">Tính năng ref</a>
+              <li><a href="#muc1_5">So sánh props và state</a>
+              <li><a href="#muc1_6">Tính năng ref</a>
             </ul>
           </li>
           <li><a href="#muc2">Chu kỳ sống của các thành phần React (React Lifecycle)</a>
@@ -366,7 +367,19 @@
       <p>Xem giải thích và ví dụ minh họa tại <a
           href="https://vi.reactjs.org/docs/lifting-state-up.html">https://vi.reactjs.org/docs/lifting-state-up.html</a>
       </p>
-      <h5 id="muc1_5">Tính năng ref</h5>
+      <h5 id="muc1_5">So sánh props và state</h5>
+      <p>Cuối cùng, hãy tóm tắt lại và xem sự khác biệt chính giữa props và state:</p>
+      <ul>
+        <li>Các component nhận dữ liệu từ bên ngoài bằng props, trong khi chúng có thể tạo và quản lý dữ liệu của riêng
+          mình với state;</li>
+        <li>props được sử dụng để chuyển dữ liệu, trong khi state là để quản lý dữ liệu;</li>
+        <li>Dữ liệu từ pops ở chế độ chỉ đọc và không thể sửa đổi bởi component đang nhận nó từ bên ngoài;</li>
+        <li>Dữ liệu state có thể được sửa đổi bởi component của chính nó, nhưng là riêng tư (không thể truy cập từ bên
+          ngoài);</li>
+        <li>props chỉ có thể được truyền từ component cha sang component con (luồng một chiều);</li>
+        <li>Việc sửa đổi trạng thái sẽ xảy ra với phương thức setState ().</li>
+      </ul>
+      <h5 id="muc1_6">Tính năng ref</h5>
       <p>Tham chiếu, hoặc ref, là một tính năng cho phép các thành phần React tương tác với các phần tử con. Trường hợp
         sử dụng phổ biến nhất cho các refs là tương tác với các phần tử UI có đọc đầu vào từ người dùng. Hãy xem xét
         phần tử form HTML. Những phần tử này được kết xuất đến trình duyệt nhưng người dùng có thể tương tác với chúng
