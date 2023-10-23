@@ -7,6 +7,46 @@
 <link rel="stylesheet" href="font.css">
 <link rel="stylesheet" href="font-awesome.min.css">
 <style>
+  i {
+    color: yellow;
+  }
+
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
   #myBtn {
     display: none;
     position: fixed;
@@ -145,7 +185,7 @@
         ứng dụng web với React</a>
       <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 3: Quản lý dữ liệu ứng dụng
         web với React</a>
-       <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành React</a>
+      <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành React</a>
       <!--<a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ">Bài 4: Redux và
         React Redux</a>-->
       <!--<a href="Bai05.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 5: Kiểm thử (Testing)</a>-->
@@ -226,98 +266,137 @@
         <li>React dễ kiểm thử (Testing): Thiết kế của React rất thân thiện với người dùng để kiểm thử.</li>
       </ul>
       <h4 id="muc3"><b>III. Nội dung tiên quyết và cài đặt</b></h4>
-
       <p>Để bắt đầu với React chúng ta cần trang bị kiến thức cơ bản:</p>
       <ul>
         <li><a href="https://hoctructuyencntt.github.io/TKWEB/Bai01.html">HTML, CSS và JavaScript.</a></li>
         <li><a href="https://hoctructuyencntt.com/2022/07/28/ngon-ngu-javascript/">JavaScript nâng cao.</a></li>
       </ul>
-      <p>Tải và cài Node.js và npm (Node.js package manager) tại <a
-          href="https://nodejs.org/en/download/">nodejs.org</a>, nếu đang dùng hệ điều
-        hành Windows, chọn Windows Installer tại mục LTS.</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_1.png">
+      <p>Để tạo các ứng dụng React chúng ta cần môi trường làm việc (IDE). Bài này sẽ trình bày cách sử dụng hai môi
+        trường là Visual Studio Code và CodeSandbox.</p>
+      <div class="tab">
+        <button class="tablinks active" onclick="myTab(event, 'vsc')">Visual Studio Code</button>
+        <button class="tablinks" onclick="myTab(event, 'codesandbox')">CodeSandbox</button>
       </div>
-      <p>Tải và cài Visual Studio Code tại <a href="https://code.visualstudio.com/download">code.visualstudio.com</a>
-      </p>
-      <p> Sau khi cài đặt thành công, mở Visual Studio Code và vào mục Terminal > New Terminal. </p>
+      <div id="vsc" class="tabcontent" style="display: block;">
+        <p>Tải và cài Node.js và npm (Node.js package manager) tại <a
+            href="https://nodejs.org/en/download/">nodejs.org</a>, nếu đang dùng hệ điều
+          hành Windows, chọn Windows Installer tại mục LTS.</p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_1.png">
+        </div>
+        <p>Tải và cài Visual Studio Code tại <a href="https://code.visualstudio.com/download">code.visualstudio.com</a>
+        </p>
+        <p> Sau khi cài đặt thành công, mở Visual Studio Code và vào mục Terminal > New Terminal. </p>
+      </div>
+      <div id="codesandbox" class="tabcontent">
+        <p>Truy cập <a href="https://codesandbox.io/">CodeSandbox</a> và đăng nhập bằng tài Gmail hay Github.</p>
+        <p>Tại mục Recent chọn New sandbox, sau đó chọn React từ cửa sổ Start from a template.</p>
+      </div>
       <h4 id="muc4"><b>IV. Tạo ứng dụng React đầu tiên</b></h4>
-      <p> Thư mục mặc định của Terminal thông thường là C:\Users\Admin></p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_2.png">
+      <div class="tab">
+        <button class="tablinks active" onclick="myTab(event, 'vsc1')">Visual Studio Code</button>
+        <button class="tablinks" onclick="myTab(event, 'codesandbox1')">CodeSandbox</button>
       </div>
-      <p>Có thể di chuyển đến thư mục khác dùng lệnh cd. Ví dụ chúng ta sẽ di chuyển đến thư mục ReactProject trong ổ
-        đĩa D, lệnh như sau:</p>
-      <ul>
-        <li>C:\Users\Admin> cd d: -> di chuyển đến ổ D</li>
-        <li>D:\> cd ReactProject -> di chuyển đến thư mục ReactProject</li>
-      </ul>
-      <p>Kế tiếp là cài đặt môi trường React, bài viết này dùng create-react-app, bằng cách dùng gói npm:</p>
-      <div class="w3-code notranslate htmlHigh">
-        D:\ReactProject> npm install -g create-react-app
+      <div id="vsc1" class="tabcontent" style="display: block;">
+        <p> Thư mục mặc định của Terminal thông thường là C:\Users\Admin></p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_2.png">
+        </div>
+        <p>Có thể di chuyển đến thư mục khác dùng lệnh cd. Ví dụ chúng ta sẽ di chuyển đến thư mục ReactProject trong ổ
+          đĩa D, lệnh như sau:</p>
+        <ul>
+          <li>C:\Users\Admin> cd d: -> di chuyển đến ổ D</li>
+          <li>D:\> cd ReactProject -> di chuyển đến thư mục ReactProject</li>
+        </ul>
+        <p>Kế tiếp là cài đặt môi trường React, bài viết này dùng create-react-app, bằng cách dùng gói npm:</p>
+        <div class="w3-code notranslate htmlHigh">
+          D:\ReactProject> npm install -g create-react-app
+        </div>
+        <p>Sau đó tiến hành tạo ứng dụng đầu tiên, ví dụ tên myfirstreact</p>
+        <div class="w3-code notranslate htmlHigh">
+          D:\ReactProject> npx create-react-app myfirstreact
+        </div>
+        <p>Nếu thành công:</p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_3.png">
+        </div>
+        <p> Sau khi tạo ứng dụng thành công sẽ xuất hiện thư mục tên myfirstreact trong D:\ReactProject. Chúng ta di
+          chuyển đến thư mục này </p>
+        <div class="w3-code notranslate htmlHigh">
+          D:\ReactProject> cd myfirstreact
+        </div>
+        <p>Cuối cùng là thực thi ứng dụng dùng lệnh start của gói npm:</p>
+        <div class="w3-code notranslate htmlHigh">
+          D:\ReactProject\myfirstreact> npm start
+        </div>
+        <p>Quan sát Terminal xuất hiện:</p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_4.png">
+        </div>
+        <p>Và chờ cho đến khi:</p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_5.png">
+        </div>
+        <p>Cửa sổ trình duyệt sẽ mở ứng dụng React với url http://localhost:3000/</p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_6.png">
+        </div>
+        <p>Đóng trình duyệt.</p>
       </div>
-      <p>Sau đó tiến hành tạo ứng dụng đầu tiên, ví dụ tên myfirstreact</p>
-      <div class="w3-code notranslate htmlHigh">
-        D:\ReactProject> npx create-react-app myfirstreact
+      <div id="codesandbox1" class="tabcontent">
+        <p>Sau khi chọn Start from a template chúng ta sẽ đến môi trường phát triển React trên CodeSandbox:</p>
+        <iframe src="https://codesandbox.io/embed/late-bash-xwl57x?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+          style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="late-bash-xwl57x"
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+        <p>Chúng ta có thể thay đổi nội dung từ h1, h2 trong App.js để xem sự thay đổi. Nhấn nút Open SandBox để đến tài
+          khoản cá nhân trên CodeSandbox và bắt đầu tạo ứng dụng React.</p>
       </div>
-      <p>Nếu thành công:</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_3.png">
-      </div>
-      <p> Sau khi tạo ứng dụng thành công sẽ xuất hiện thư mục tên myfirstreact trong D:\ReactProject. Chúng ta di
-        chuyển đến thư mục này </p>
-      <div class="w3-code notranslate htmlHigh">
-        D:\ReactProject> cd myfirstreact
-      </div>
-      <p>Cuối cùng là thực thi ứng dụng dùng lệnh start của gói npm:</p>
-      <div class="w3-code notranslate htmlHigh">
-        D:\ReactProject\myfirstreact> npm start
-      </div>
-      <p>Quan sát Terminal xuất hiện:</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_4.png">
-      </div>
-      <p>Và chờ cho đến khi:</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_5.png">
-      </div>
-      <p>Cửa sổ trình duyệt sẽ mở ứng dụng React với url http://localhost:3000/</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_6.png">
-      </div>
-      <p>Đóng trình duyệt.</p>
       <h4 id="muc5"><b>V. Cấu trúc một ứng dụng React </b></h4>
-      <p>Bây giờ chúng ta sẽ lướt qua cấu trúc một ứng dụng React sẽ bao gồm những thành phần cơ bản nào bằng cách vào
-        File > Open Folder... và chọn myfirstreact trong ổ D. Cấu trúc thư mục myfirstreact:</p>
-      <div style="text-align: center;">
-        <img style="width:70%;height: auto;" src="img/bai01/bai01_7.png">
+      <div class="tab">
+        <button class="tablinks active" onclick="myTab(event, 'vsc2')">Visual Studio Code</button>
+        <button class="tablinks" onclick="myTab(event, 'codesandbox2')">CodeSandbox</button>
       </div>
-      <p>Thư mục node_modules chứa các thư việc dùng trong ứng dụng React và chúng ta không can thiệp vào </p>
-      <div style="text-align: center;">
-        <img style="width:70%;height: auto;" src="img/bai01/bai01_8.png">
+      <div id="vs2" class="tabcontent" style="display: block;">
+        <p>Bây giờ chúng ta sẽ lướt qua cấu trúc một ứng dụng React sẽ bao gồm những thành phần cơ bản nào bằng cách vào
+          File > Open Folder... và chọn myfirstreact trong ổ D. Cấu trúc thư mục myfirstreact:</p>
+        <div style="text-align: center;">
+          <img style="width:70%;height: auto;" src="img/bai01/bai01_7.png">
+        </div>
+        <p>Thư mục node_modules chứa các thư việc dùng trong ứng dụng React và chúng ta không can thiệp vào </p>
+        <div style="text-align: center;">
+          <img style="width:70%;height: auto;" src="img/bai01/bai01_8.png">
+        </div>
+        <p>Thư mục kế tiếp là thư mục public chứa các thành phần như các icon, tập tin HTML, hình ảnh, tập tin json,...
+        </p>
+        <div style="text-align: center;">
+          <img style="width:70%;height: auto;" src="img/bai01/bai01_9.png">
+        </div>
+        <p>Tập tin index.html là tập tin mặc định khi chúng ta tạo một ứng dụng React và React sẽ kết xuất nội dung đến
+          trình duyệt thông qua tập tin này. Nếu muốn, chúng ta có thể tạo các tập tin HTML tùy ý và gọi khi thực thi
+          React.</p>
+        <p>Tham khảo thêm về thư mục public tại <a
+            href="https://create-react-app.dev/docs/using-the-public-folder/">using-the-public-folder</a></p>
+        <p>Thư mục src chứa các thành phần quan trọng của một ứng dụng React bao gồm App.css, App.js và App.test.js,
+          index.js, index.css,...</p>
+        <div style="text-align: center;">
+          <img style="width:70%;height: auto;" src="img/bai01/bai01_10.png">
+        </div>
+        <p>Các thành phần này quyết định giao diện của ứng dụng React như khi chúng ta thực thi ở trên</p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_11.png">
+        </div>
+        <p>Mở App.js, nội dung sẽ trông như </p>
+        <div style="text-align: center;">
+          <img style="width:100%;height: auto;" src="img/bai01/bai01_12.png">
+        </div>
       </div>
-      <p>Thư mục kế tiếp là thư mục public chứa các thành phần như các icon, tập tin HTML, hình ảnh, tập tin json,...
-      </p>
-      <div style="text-align: center;">
-        <img style="width:70%;height: auto;" src="img/bai01/bai01_9.png">
-      </div>
-      <p>Tập tin index.html là tập tin mặc định khi chúng ta tạo một ứng dụng React và React sẽ kết xuất nội dung đến
-        trình duyệt thông qua tập tin này. Nếu muốn, chúng ta có thể tạo các tập tin HTML tùy ý và gọi khi thực thi
-        React.</p>
-      <p>Tham khảo thêm về thư mục public tại <a
-          href="https://create-react-app.dev/docs/using-the-public-folder/">using-the-public-folder</a></p>
-      <p>Thư mục src chứa các thành phần quan trọng của một ứng dụng React bao gồm App.css, App.js và App.test.js,
-        index.js, index.css,...</p>
-      <div style="text-align: center;">
-        <img style="width:70%;height: auto;" src="img/bai01/bai01_10.png">
-      </div>
-      <p>Các thành phần này quyết định giao diện của ứng dụng React như khi chúng ta thực thi ở trên</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_11.png">
-      </div>
-      <p>Mở App.js, nội dung sẽ trông như </p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai01/bai01_12.png">
+      <div id="codesandbox2" class="tabcontent">
+        <p>Cấu trúc dự án React tổ chức trong CodeSandbox khá tương đồng với cách tổ chức trên Visual Studio Code.</p>
+        <iframe src="https://codesandbox.io/embed/late-bash-xwl57x?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+          style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="late-bash-xwl57x"
+          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       </div>
       <h4 id="muc6"><b>VI. Thay đổi nội dung ứng dụng React </b></h4>
       <p>Trong App.js, thay nội dung </p>
@@ -383,11 +462,28 @@
         import React from 'react';<br>
         import ReactDOM from 'react-dom';
       </div>
+      <p>Chú ý: Hàm ReactDOM không còn được hỗ trợ trong phiên bản React 18 trở lên. Để chạy mã trên, bạn cần cập nhật
+        phiên bản React đến phiên bản thấp hơn (ví dụ 17.x.x). Trong CodeSandbox, tìm đến mục Dependencies và tìm đến
+        react và react-dom để chọn lại phiên bản.</p>
 
 
 
+      <script>
+        function myTab(evt, tabName) {
+          var i, tabcontent, tablinks;
 
-
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(tabName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+      </script>
       <div class="w3-center">
         <div class="pagination">
           <a href="Bai02.html">Bài tiếp theo</a>

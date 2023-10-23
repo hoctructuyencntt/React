@@ -180,11 +180,22 @@
             <ul>
               <li><a href="#muc3_1"> Sự kiện (events) và trình xử lý sự kiện (event handlers)</a>
               <li><a href="#muc3_2">Từ khóa this và hàm mũi tên</a>
-              <li><a href="#muc3_3">Kết xuất theo điều kiện</a>
-              <li><a href="#muc3_4">Kết xuất danh sách (List)</a>
-              <li><a href="#muc3_5">Làm việc với biểu mẫu (Form)</a>
-              <li><a href="#muc3_6">React Router</a>
-              <li><a href="#muc3_7">Sử dụng CSS trong React</a>
+            </ul>
+          </li>
+          <li><a href="#muc4">Một số vấn đề khác</a>
+            <ul>
+              <li><a href="#muc4_1">Kết xuất theo điều kiện</a>
+              <li><a href="#muc4_2">Kết xuất danh sách (List)</a>
+              <li><a href="#muc4_3">Làm việc với biểu mẫu (Form)</a>
+              <li><a href="#muc4_4">React Router</a>
+              <li><a href="#muc4_5">Sử dụng CSS trong React</a>
+              <li><a href="#muc4_6">React Hook</a>
+                <ul>
+                  <li><a href="#muc4_6_1">useState</a></li>
+                  <li><a href="#muc4_6_2">useEffect</a></li>
+                  <li><a href="#muc4_6_3">useContext</a></li>
+                  <li><a href="#muc4_6_4">useRef</a></li>
+                </ul>
             </ul>
           </li>
         </ol>
@@ -219,6 +230,13 @@
         &lt;Car brand="Ford" model="Mustang" /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/property-4wm3hp?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="property"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+      <p>Chú ý: Hàm ReactDOM không còn được hỗ trợ trong phiên bản React 18 trở lên. Để chạy mã trên, bạn cần cập nhật
+        phiên bản React đến phiên bản thấp hơn (ví dụ 17.x.x). Trong CodeSandbox, tìm đến mục Dependencies và tìm đến
+        react và react-dom để chọn lại phiên bản.</p>
       <p>Có thể thấy props tương tự các đối số trong hàm. Nhờ props, dữ liệu có thể được chuyển đổi qua lại giữa các
         component. Ví dụ gửi dữ liệu các thuộc tính brand và model từ Garage đến Car:</p>
       <div class="w3-code notranslate htmlHigh">
@@ -240,6 +258,10 @@
         ReactDOM.render(
         &nbsp;&nbsp;&lt;Garage /&gt;, document.getElementById('root'));<br>
       </div>
+      <iframe src="https://codesandbox.io/embed/property-2-q6ypdt?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="property 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Nếu dữ liệu thuộc tính một component có cấu trúc phức tạp thay vì một chuỗi đơn giản như Ford hay Mustang chúng
         ta
         có thể dùng biến. Ví dụ khai báo biến carinfo kiểu object chứa nhiều thuộc tính:</p>
@@ -256,6 +278,10 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;Car info = {carinfo} /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/property-3-74ff7n?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="property 3"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Nếu component có chứa hàm constructor thì props nên được chuyển đến constructor và React.Component thông qua
         hàm
         super():</p>
@@ -270,6 +296,7 @@
         &nbsp;&nbsp;}<br>
         }
       </div>
+
       <p>Lý do cho việc này sẽ được giải thích trong đối tượng state. Tham khảo tại <a
           href="https://stackoverflow.com/questions/30571875/whats-the-difference-between-super-and-superprops-in-react-when-using-e">stackoverflow.com</a>.
       </p>
@@ -326,6 +353,10 @@
         &lt;Car /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/state-1-tv5cvc?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="state 1"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Lưu ý rằng, với state khi component được sử dụng sẽ không cần chuyển tên thuộc tính như khi sử dụng đối tượng
         props.
         Một điều khác phân biệt props và state đó là props chỉ đọc (read only) trong khi state có thể thay đổi bằng cách
@@ -360,6 +391,10 @@
         &lt;Car /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/state-2-ynphnm?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="state 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5 id="muc1_4">Chuyển state lên trên (Lifting state up)</h5>
       <p>Thông thường, khi một dữ liệu thay đổi nó sẽ ảnh hưởng tới nhiều component cùng lúc. State được khuyến khích
         chia
@@ -488,6 +523,10 @@
         const myComponent = &lt;Car newbrand="Toyota" newmodel="Camry" /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/mounting-qfgvgd?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Mounting"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Ngược với getDerivedStateFromProps, phương thức componentDidMount() được gọi sau khi component được kết xuất
         đến
         DOM. Điều này cũng có nghĩa phương thức này là nơi dùng các lệnh yêu cầu component khi nó đã được đặt trên DOM.
@@ -523,6 +562,10 @@
         const myComponent = &lt;Car /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/mounting-2-v4tzdk?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Mounting 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5 id="muc2_2">Giai đoạn Updating</h5>
       <p>Khi component được kết xuất đến DOM có thể sẽ có sự thay đổi liên quan đến state hay props và đây là giai đoạn
         updating. Trong giai đoạn này có các phương thức getDerivedStateFromProps(), shouldComponentUpdate(), render(),
@@ -605,6 +648,10 @@
         &lt;Car newbrand="Honda" newmodel="Civic" /&gt;;
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/updating-vgfw6v?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Updating"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Kết quả:</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_3.png">
@@ -643,6 +690,10 @@
         const myComponent = &lt;Car /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));<br>
       </div>
+      <iframe src="https://codesandbox.io/embed/updating-2-9whj4r?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Updating 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Thuộc tính của Car sẽ thay đổi khi nhấn nút Change Car. Bây giờ chúng ta thêm phương thức
         shouldComponentUpdate()</p>
       <div class="w3-code notranslate htmlHigh">
@@ -709,6 +760,10 @@
         &lt;Car /&gt;;<br>
         ReactDOM.render(myComponent, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/updating-3-qf8r9q?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Updating 3"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Thực thi</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_4.png">
@@ -821,7 +876,8 @@
       </div>
       <p>React cũng có thể cho chúng ta biết chính xác đối tượng sự kiện chúng ta đang làm việc. Có thể tham khảo tại <a
           href="https://www.w3schools.com/react/showreact.asp?filename=demo2_react_events_event">W3Schools</a>.</p>
-      <h5 id="muc3_3">Kết xuất theo điều kiện</h5>
+      <h4 id="muc4"><b>IV. Một số vấn đề khác</b></h4>
+      <h5 id="muc4_1">Kết xuất theo điều kiện</h5>
       <p>Trong React để kết xuất các component theo điều kiện, chúng ta thực hiện bằng nhiều cách khác nhau.</p>
       <h5>Lệnh if</h5>
       <p>Có thể dùng lệnh if trong javaScript để truy xuất các component. Ví dụ chúng ta có 2 component sau:</p>
@@ -859,9 +915,13 @@
         &nbsp;&nbsp;&lt;Exam isExam={true} /&gt;, document.getElementById("root"));
       </div>
       <p>Kết quả</p>
-      <div style="text-align: center;">
+      <div style="text-align: center; margin-bottom: 10px;">
         <img style="height: auto;" src="img/bai03/bai03_8.png">
       </div>
+      <iframe src="https://codesandbox.io/embed/if-n8jj7m?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="if"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5>Toán tử ? :</h5>
       <p>Trong JS, toán tử ba ngôi ?: là một biến thể của lệnh if else. Các component cũng có thể được kết xuất dùng
         toán
@@ -876,6 +936,10 @@
         &nbsp;&nbsp;);<br>
         }
       </div>
+      <iframe src="https://codesandbox.io/embed/if-2-pc9v5r?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="if 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Lưu ý rằng biểu thức dùng toán tử ba ngôi ?: là toán tử JS nên được đặt trong cặp ngoặc móc {}.</p>
       <h5>Toán tử &&</h5>
       <p>Các component cũng có thể được kết xuất theo điều kiện trong React dùng toán tử &&. Ví dụ</p>
@@ -910,10 +974,14 @@
         &nbsp;&nbsp;&lt;Garage cars={cars} /&gt;, document.getElementById("root"));
       </div>
       <p>Kết quả</p>
-      <div style="text-align: center;">
+      <div style="text-align: center; margin-bottom: 10px;">
         <img style="height: auto;" src="img/bai03/bai03_10.png">
       </div>
-      <h5 id="muc3_4">Kết xuất danh sách (List)</h5>
+      <iframe src="https://codesandbox.io/embed/and-88jdwn?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="and"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+      <h5 id="muc4_2">Kết xuất danh sách (List)</h5>
       <p>Trong React để kết xuất một danh sách chúng ta ưu tiên dùng phương thức map().
         Phương thức map() cho phép chúng ta chạy một hàm trên mỗi giá trị trong hàm và trả về một mảng mới. Xem xét ví
         dụ sau:</p>
@@ -936,6 +1004,10 @@
         }<br>
         ReactDOM.render(&lt;Garage /&gt;, document.getElementById("root"));
       </div>
+      <iframe src="https://codesandbox.io/embed/list-1-l6nhjt?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="list 1"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Kết quả:</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_11.png">
@@ -980,6 +1052,10 @@
         &nbsp;&nbsp;);<br>
         }
       </div>
+      <iframe src="https://codesandbox.io/embed/list-2-snks2w?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="list 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Các key được sử dụng trong các mảng phải là duy nhất giữa các anh chị em của chúng. Tuy nhiên, chúng không cần
         phải là duy nhất với phạm vi toàn cục. Chúng ta có thể sử dụng các key giống nhau khi tạo ra hai mảng khác nhau.
         Ví dụ sau hai mảng anh em sidebar và content dùng chung một mảng posts toàn cục nên có key giống nhau:</p>
@@ -1017,11 +1093,15 @@
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;Blog posts={posts} /&gt;, document.getElementById("root"));
       </div>
+      <iframe src="https://codesandbox.io/embed/list-3-dr9d4v?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="list 3"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Kết quả</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_12.png">
       </div>
-      <h5 id="muc3_5">Làm việc với biểu mẫu (Form)</h5>
+      <h5 id="muc4_3">Làm việc với biểu mẫu (Form)</h5>
       <p>Giống như HTML, React sử dụng các biểu mãu cho phép người dùng tương tác với trang web. Ví dụ sau đây tạo một
         form đơn giản cho phép người dùng nhập tên</p>
       <div class="w3-code notranslate htmlHigh">
@@ -1112,6 +1192,10 @@
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/form-1-2gwppx?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="form 1"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Kết quả thực thi:</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_15.png">
@@ -1160,6 +1244,11 @@
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/form-2-8myvxm?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="form 2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+
       <h5> Sử dụng Textarea</h5>
       <p>Textarea trong HTML sử dụng phần tử &lt;textarea&gt;, ví dụ:</p>
       <div class="w3-code notranslate htmlHigh">
@@ -1191,6 +1280,10 @@
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/textarea-6md5wm?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="textarea"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5>Select</h5>
       <p>Tương tự textarea, select cũng được sử dụng với một ít khác biệt so với HTML như ví dụ sau:</p>
       <div class="w3-code notranslate htmlHigh">
@@ -1218,12 +1311,15 @@
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;MyForm /&gt;, document.getElementById('root'));
       </div>
-
+      <iframe src="https://codesandbox.io/embed/select-cpl7zf?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="select"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Thực thi</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_16.png">
       </div>
-      <h5 id="muc3_6">React Router</h5>
+      <h5 id="muc4_4">React Router</h5>
       <p>Khi bắt đầu, hầu hết các trang web bao gồm một loạt các trang mà người dùng có thể điều hướng (navigating) bằng
         cách yêu cầu và mở các tập tin riêng biệt. Vị trí của tập tin hoặc tài nguyên hiện tại đã được liệt kê trong
         thanh
@@ -1251,6 +1347,7 @@
       <div class="w3-code notranslate htmlHigh">
         npm i -D react-router-dom@latest
       </div>
+      <p>Trong CodeSandbox tại mục Dependencies gõ react-router-dom trong ô Add Dependency và enter.</p>
       <h5>Ứng dụng sử dụng React Router</h5>
       <p>Để tạo một ứng dụng định tuyến các trang chúng ta bắt đầu bằng cấu trúc các tập tin. Trong thư mục src tạo thư
         mục
@@ -1389,6 +1486,10 @@
       <p>Thiết lập thuộc tính path đến * sẽ hoạt động như một phương thức truy cập cho mọi URL
         không xác định. Điều này là tuyệt vời cho một trang lỗi 404.</p>
       <p>Thuộc tính element của &lt;Route&gt; chỉ component cần định tuyến đến.</p>
+      <iframe src="https://codesandbox.io/embed/react-router-r3zj7n?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="React Router"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Thực thi ứng dụng</p>
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_17.png">
@@ -1401,7 +1502,7 @@
       <div style="text-align: center;">
         <img style="height: auto;" src="img/bai03/bai03_19.png">
       </div>
-      <h5 id="muc3_7">Sử dụng CSS trong React </h5>
+      <h5 id="muc4_5">Sử dụng CSS trong React </h5>
       <p>Sử dụng CSS trong React có nhiều cách nhưng có 3 cách phổ biến sau:</p>
       <ul>
         <li>Chèn định nghĩa CSS trực tiếp (Inline Styling)</li>
@@ -1463,6 +1564,226 @@
         dùng các mô-đun CSS. Chi tiết về mô-đun CSS tham khảo <a href="https://github.com/css-modules/css-modules">tại
           đây</a>.
       </p>
+      <h5 id="muc4_6">React Hook </h5>
+      <p>JavaScript là một trong số hiếm các ngôn ngữ lập trình có thể được tiếp cận theo các mẫu hình khác nhau. Nổi
+        bật
+        nhất là mẫu hình lập trình chức năng hay hàm (Functinal Programming) và mẫu hình lập trình hướng đối tượng
+        (Object
+        Oriented Programming).</p>
+      <p>Trong React, các component có thể được tạo theo kiểu hàm và kiểu Class. Với kiểu hàm (chức năng), chúng ta
+        không
+        có quyền truy cập vào trạng thái và các tính năng khác của React và React Hook ra đời giúp xử lý vấn đề này.
+        React Hook đã được thêm vào React trong phiên bản 16.8. React Hook cho phép các thành phần chức năng (function
+        components) có quyền truy cập vào trạng thái và các tính năng khác của React. Do đó, các thành phần lớp (class
+        components) nói chung không còn cần thiết nữa.</p>
+      <h5>React Hook là gì?</h5>
+      <p>Hook cho phép chúng ta "móc nối" vào các tính năng của React như các phương thức trạng thái và vòng đời.</p>
+      <p>Xét ví dụ sau đây:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/1aa47b1c760da2ec0afbefc5e7057e43.js"></script>
+      <p>Chúng ta phải import Hook từ react. Ở đây chúng ta đang sử dụng useState Hook để theo dõi trạng thái ứng dụng.
+        useState đã được giới thiệu và sẽ được đề cập chi tiết hơn phần bên dưới bài này. Trạng thái (state) thường đề
+        cập
+        đến dữ liệu ứng dụng hoặc thuộc tính cần được theo dõi.</p>
+      <h5>Quy tắc Hook</h5>
+      <p>Có 3 quy tắc cho hook:</p>
+      <ul>
+        <li>Hook chỉ có thể được gọi bên trong các component hàm (function component).</li>
+        <li>Hook chỉ có thể được gọi ở mức cao nhất của một component.</li>
+        <li>Hook không thể có điều kiện.</li>
+      </ul>
+      <p>Tài liệu này sẽ tìm hiểu các React Hook cơ bản là useState, useEffect, useContext và useRef. Các Hook khác
+        chúng
+        ta có thể tham khảo thêm tại <a href="https://react.dev/reference/react">
+          https://react.dev/reference/react</a></p>
+      <h5 id="muc4_6_1">useState</h5>
+      <p>React useState Hook cho phép chúng ta theo dõi trạng thái (state) trong một thành phần hàm (function
+        component). Trạng thái thường đề cập đến dữ liệu (data) hoặc thuộc tính (properties) cần được theo dõi trong một
+        ứng dụng.
+        Sử dụng useState</p>
+      <p>Để sử dụng useState Hook, chúng ta phải import nó từ react:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";
+      </div>
+
+      <h5>Khởi tạo useState</h5>
+      <p>Chúng ta khởi tạo trạng thái bằng cách gọi useState trong thành phần hàm của chúng ta. useState chấp nhận một
+        trạng thái ban đầu và trả về hai giá trị:</p>
+      <ul>
+        <li>Tình trạng hiện tại.</li>
+        <li>Một hàm cập nhật trạng thái.</li>
+      </ul>
+      <p>Ví dụ:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState } from "react";<br>
+        function FavoriteColor() {<br>
+        &nbsp;&nbsp; const [color, setColor] = useState("");<br>
+        }
+      </div>
+      <p>Một vài lưu ý từ ví dụ trên:</p>
+      <ul>
+        <li>Giá trị đầu tiên, color, là trạng thái hiện tại của chúng ta.</li>
+        <li>Giá trị thứ hai, setColor, là hàm được sử dụng để cập nhật trạng thái của chúng ta.</li>
+        <li>Cuối cùng, chúng ta đặt trạng thái ban đầu thành một chuỗi rỗng: useState ("")</li>
+      </ul>
+      <p>Ở đây chúng ta đang sử dụng kỹ thuật giải cấu trúc (destructuring) các giá trị trả về từ useState. Tham khảo
+        thêm về React ES6 Destructuring tại <a href="https://www.w3schools.com/REACT/react_es6_destructuring.asp">
+          https://www.w3schools.com/REACT/react_es6_destructuring.asp</a></p>
+      <h5> Đọc trạng thái</h5>
+      <p>Bây giờ chúng ta có thể gộp trạng thái ở bất kỳ đâu trong thành phần của chúng ta.</p>
+      <p>Ví dụ sử dụng biến trạng thái trong thành phần được kết xuất như sau:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/3118796cee76db70ee4a67fc9fd8e52b.js"></script>
+      <p>Cập nhật trạng thái</p>
+      <p>Chúng ta sử dụng hàm để cập nhật trạng thái của chúng ta. Chúng ta không bao giờ nên cập nhật trực tiếp trạng
+        thái. Ví dụ: color = "red" là không được phép.</p>
+      <p>Ví dụ sử dụng một nút để cập nhật trạng thái:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/bcebacd59c3e37643a5b13fe56d594a3.js"></script>
+      <h5>Trạng thái có thể theo dõi những gì</h5>
+      <p>UseState Hook có thể được sử dụng để theo dõi các chuỗi, số, boolean, mảng, đối tượng và bất kỳ sự kết hợp nào
+        của chúng. Chúng ta có thể tạo nhiều Hooks trạng thái để theo dõi các giá trị riêng lẻ.</p>
+      <p>Ví dụ tạo nhiều Hooks trạng thái:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/d30614f7229c9a2392af75e4449e7c98.js"></script>
+      <p>Hoặc, chúng ta có thể chỉ sử dụng một trạng thái và thay vào đó bao gồm một đối tượng như ví dụ tạo một Hook
+        duy nhất chứa một đối tượng:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/9bfd6cd8d40c288aa0e17da86817f1e6.js"></script>
+      <p>Vì bây giờ chúng ta đang theo dõi một đối tượng duy nhất, chúng ta cần tham chiếu đối tượng đó và sau đó là
+        thuộc
+        tính của đối tượng đó khi hiển thị thành phần. (Ví dụ: car.brand).</p>
+      <h5>Cập nhật các đối tượng và mảng ở trạng thái</h5>
+      <p>Khi trạng thái được cập nhật, toàn bộ trạng thái sẽ bị ghi đè. Điều gì sẽ xảy ra nếu chúng ta chỉ muốn cập nhật
+        màu sắc (color) của chiếc xe của mình?</p>
+      <p>Nếu chúng ta chỉ gọi setCar ({color: "blue"}), điều này sẽ xóa brand, model và year khỏi trạng thái của chúng
+        ta.
+        Chúng ta có thể sử dụng toán tử lan truyền (spread operator) (toán tử có kí hiệu ba chấm) JavaScript để giải
+        quyết
+        vấn đề này. (Tham khảo thêm toán tử lan truyền tại <a
+          href="https://ngocminhtran.com/2020/02/26/javascript-hien-dai-phan-1/">
+          https://ngocminhtran.com/2020/02/26/javascript-hien-dai-phan-1/
+        </a>)</p>
+      <p>Ví dụ sử dụng toán tử lan truyền JavaScript để chỉ cập nhật màu của chiếc xe:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/5ad5775cf78d246cb54efdeb2d06e4e7.js"></script>
+      <p>Bởi vì chúng ta cần giá trị hiện tại của trạng thái, chúng ta truyền một hàm vào hàm setCar của chúng ta. Hàm
+        này
+        nhận giá trị trước đó. Sau đó, chúng ta trả về một đối tượng, áp dụng toán tử lan truyền đến previousState và
+        chỉ
+        ghi đè lên màu.</p>
+      <h5 id="muc4_6_2">useEffect </h5>
+      <p>UseEffect Hook cho phép bạn thực hiện các hiệu ứng phụ trong các thành phần của mình. Một số ví dụ về hiệu ứng
+        phụ như tìm nạp dữ liệu (fetching data), cập nhật trực tiếp DOM hay bộ tính giờ (timer).</p>
+      <p>Cú pháp sử dụng:</p>
+      <div class="w3-code notranslate htmlHigh">
+        useEffect (đối số 1, đối số 2)
+      </div>
+      <p>useEffect chấp nhận hai đối số. Đối số thứ hai là tùy chọn.</p>
+      <p>Hãy sử dụng bộ đếm thời gian làm ví dụ. Sử dụng setTimeout () để đếm 1 giây sau lần kết xuất ban đầu:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/06e0291240382217a40ddf65dd4a3ddc.js"></script>
+      <p>Lưu ý từ đoạn mã trên:</p>
+      <ul>
+        <li>Tiếp tục đếm mặc dù nó chỉ nên đếm một lần</li>
+        <li>useEffect hoạt động trên mọi kết xuất. Điều đó có nghĩa là khi biến count thay đổi, kết xuất sẽ xảy ra, điều
+          này sau đó sẽ kích hoạt một hiệu ứng khác.</li>
+      </ul>
+      <p>Đây không phải là những gì chúng ta mong đợi. Có một cách để kiểm soát hiệu ứng phụ đó là chúng ta phải luôn
+        sử dụng tham số thứ hai chấp nhận một mảng trong useEffect. Chúng ta có thể tùy ý chuyển các ràng buộc đến
+        useEffect trong mảng này.</p>
+      <p>Nếu không ràng buộc được chuyển đến:</p>
+      <div class="w3-code notranslate htmlHigh">
+        useEffect(() => {<br>
+        &nbsp;&nbsp;//chạy trên mọi kết xuất<br>
+        });
+      </div>
+      <p>Nếu một mảng rỗng được chuyển đến:</p>
+      <div class="w3-code notranslate htmlHigh">
+        useEffect(() => {<br>
+        &nbsp;&nbsp;//Chỉ chạy cho lần kết xuất đầu tiên<br>
+        }, []);
+      </div>
+      <p>Các giá trị prop hay state được chuyển đến:</p>
+      <div class="w3-code notranslate htmlHigh">
+        useEffect(() => {<br>
+        &nbsp;&nbsp;//Chạy trên lần kết xuất đầu tiên<br>
+        &nbsp;&nbsp;// Và bất kỳ khi nào bất kỳ giá trị phụ thuộc nào thay đổi<br>
+        }, [prop, state]);
+      </div>
+      <p>Vì vậy, để khắc phục sự cố này, hãy chỉ chạy hiệu ứng này trên kết xuất ban đầu. Ví dụ:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/0eda625bd4233be9117d4a7c49386ce6.js"></script>
+      <p>Đây là một ví dụ về useEffect Hook phụ thuộc vào một biến. Nếu biến đếm count cập nhật, hiệu ứng sẽ chạy lại:
+      </p>
+      <script src="https://gist.github.com/hoctructuyencntt/8a1c7c94e64c5986c072a6351b32a801.js"></script>
+      <h5>Xóa hiệu ứng (Effect Cleanup)</h5>
+      <p>Một số hiệu ứng phải được hủy để giảm rò rỉ bộ nhớ. Hết thời gian chờ, đăng ký, trình nghe sự kiện và các hiệu
+        ứng khác không còn cần thiết nên được xử lý. Chúng ta thực hiện điều này bằng cách bao gồm một hàm trả về ở cuối
+        useEffect Hook.</p>
+      <p>Ví dụ: Hủy bộ hẹn giờ khi kết thúc sử dụng</p>
+      <script src="https://gist.github.com/hoctructuyencntt/6b9bb93197b344bae2061a557e28cfc3.js"></script>
+      <h5 id="muc4_6_3">useContext</h5>
+      <p>useContext là một cách để quản lý trạng thái mức toàn cục. Nó có thể được sử dụng cùng với useState Hook để
+        chia
+        sẻ trạng thái giữa các thành phần lồng vào nhau dễ dàng hơn so với useState một mình.</p>
+      <h5>Vấn đề</h5>
+      <p>Trạng thái phải được giữ bởi thành phần cha cao nhất trong ngăn xếp yêu cầu quyền truy cập vào trạng thái.
+        Để minh họa, chúng ta có nhiều thành phần lồng nhau. Thành phần ở trên cùng và dưới cùng của ngăn xếp cần có
+        quyền
+        truy cập vào trạng thái.</p>
+      <p>Để thực hiện điều này mà không có Context, chúng ta sẽ cần chuyển trạng thái dưới dạng các thuộc tính qua mỗi
+        thành phần lồng nhau.</p>
+      <p>Xét một ví dụ với 5 component và giả sử chúng ta muốn component1 và component5 truy cập trạng thái (user). Để
+        thực
+        hiện điều này nếu không có context, trạng thái phải được chuyển lần lượt qua các component mặc dùng các
+        component2
+        đến component4 không cần truy cập trạng thái:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/a19c39a30cf0c79d614d3397c2439165.js"></script>
+      <h5>Giải pháp dùng Context</h5>
+      <p>Để xử lý vấn đề trên chúng ta dùng Context theo các bước sau:</p>
+      <p>Bước 1: Tạo Context bằng cách import createContext và khởi tạo:</p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState, createContext } from "react";<br>
+        const UserContext = createContext()
+      </div>
+      <p>Bước 2: Gôm các component con trong Context Provider và cung cấp giá trị trạng thái:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/b37479e570dca7ee863a0d1b18ec540d.js"></script>
+      <p>Bước 3: Dùng Context trong một componnet con bằng cách dùng useContext. Để dùng useContext chúng ta phải import
+      </p>
+      <div class="w3-code notranslate htmlHigh">
+        import { useState, createContext, useContext } from "react";
+      </div>
+      <p>sau đó truy cập</p>
+      <script src="https://gist.github.com/hoctructuyencntt/c48af4470fa478af253cc57993000c0c.js"></script>
+      <p>Như vậy lúc này chúng ta cần chuyển trạng thái qua các component2 đến component4:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/d16266cd52e8b66c29e6a069f15791fb.js"></script>
+      <h5 id="muc4_6_4"> useRef </h5>
+      <p>useRef Hook cho phép chúng ta duy trì các giá trị giữa các lần kết xuất. Nó có thể được sử dụng để lưu trữ một
+        giá trị có thể thay đổi mà không gây ra kết xuất lại khi cập nhật.</p>
+      <p>Xét ví dụ: Nếu chúng ta cố gắng đếm số lần ứng dụng của chúng ta kết xuất bằng useState Hook, chúng ta sẽ bị
+        mắc
+        vào một vòng lặp vô hạn vì chính Hook này gây ra kết xuất lại. Để tránh điều này, chúng ta có thể sử dụng useRef
+        Hook như sau:</p>
+      <script src="https://gist.github.com/hoctructuyencntt/280670d13d63e34fe2f288403fe966b7.js"></script>
+      <p> useRef () trả về một Đối tượng được gọi là current. Khi chúng ta khởi tạo useRef, chúng ta đặt giá trị ban
+        đầu:
+        useRef (0).</p>
+      <p>Như tìm hiểu ở <a href="#muc1_6">ở mục 1 về tính năng ref</a>, trong React, chúng ta có thể thêm thuộc tính ref
+        vào một phần tử để truy
+        cập nó trực tiếp trong DOM. Nói chung, chúng ta muốn để React xử lý tất cả các thao tác DOM, nhưng có một số
+        trường hợp useRef có thể được sử dụng mà không gây ra sự cố.</p>
+      <p>Xét ví dụ dùng sự kiện focus trong input</p>
+      <script src="https://gist.github.com/hoctructuyencntt/25065d39333ba7f071e88f31a2e5fdcf.js"></script>
+      <p>Một vai trò khác của UseRef Hook là nó có thể được sử dụng để theo dõi các giá trị trạng thái trước đó. Điều
+        này
+        là do chúng ta có thể duy trì các giá trị useRef giữa các lần hiển thị. Xét ví dụ</p>
+      <script src="https://gist.github.com/hoctructuyencntt/984662ff6f832714df4a30873911f62b.js"></script>
+      <p>Lần này chúng ta sử dụng kết hợp useState, useEffect và useRef để theo dõi trạng thái trước đó. Trong
+        useEffect, chúng ta đang cập nhật giá trị hiện tại useRef mỗi khi inputValue được cập nhật bằng cách nhập
+        văn bản vào trường input.</p>
+
+
+
+
+
+
+
+
+
+
 
 
       <div class="w3-center">

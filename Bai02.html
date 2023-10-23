@@ -141,11 +141,12 @@
     <div class="w3-bar-block">
       <a href="Bai01.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 1. Giới thiệu
         React</a>
-      <a href="Bai02.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 2: Xây dựng giao diện (UI)
+      <a href="Bai02.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Bài 2: Xây dựng
+        giao diện (UI)
         ứng dụng web với React</a>
       <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 3: Quản lý dữ liệu ứng dụng
         web với React</a>
-       <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành React</a>
+      <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành React</a>
       <!--<a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding ">Bài 4: Redux và
         React Redux</a>-->
       <!--<a href="Bai05.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 5: Kiểm thử (Testing)</a>-->
@@ -364,6 +365,10 @@
         const myfirstelement = React.createElement("h1", {}, " Xin chào đến với React! ");<br>
         ReactDOM.render(myfirstelement, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/floral-browser-mrgxt2?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="floral-browser-mrgxt2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Bây giờ chúng ta muốn thể hiện bảng</p>
       <div class="w3-code notranslate htmlHigh">
         &lt;table className="App"&gt;<br>
@@ -396,9 +401,11 @@
         ReactDOM.render(myTable, document.getElementById('root'));
       </div>
       <p>Kết quả thực thi ứng dụng</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai02/bai02_2.png">
-      </div>
+      <iframe src="https://codesandbox.io/embed/table-553l7t?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="table"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+
       <p>Bên cạnh sử dụng phương thức createElement chúng ta có thể sử dụng một giải pháp đơn giản và hiệu quả hơn là
         kết
         hợp HTML và JavaScript được gọi là JSX. Chủ đề JSX sẽ được trình bày chi tiết hơn trong mục tiếp theo của tài
@@ -456,9 +463,10 @@
         ReactDOM.render(mycontent, document.getElementById('content'));
       </div>
       <p>Thực thi ứng dụng</p>
-      <div style="text-align: center;">
-        <img style="width:100%;height: auto;" src="img/bai02/bai02_3.png">
-      </div>
+      <iframe src="https://codesandbox.io/embed/table2-9qfx33?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="table2"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <p>Lưu ý rằng, đoạn mã HTML (table) chúng ta thêm vào viết trên nhiều dòng nên phải đặt trong cặp ngoặc.</p>
       <h4 id="muc3"><b>III. Thao tác với React Component</b></h4>
       <h5 id="muc3_1">Component là gì</h5>
@@ -511,6 +519,10 @@
         ReactDOM.render(<br>
         &lt;Car /&gt;, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/class-compnent-437m48?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="class compnent"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5 id="muc3_3">Tạo một component kiểu Function</h5>
       <p>Cú pháp giống định nghĩa hàm trong JavaScript:</p>
       <div class="w3-code notranslate htmlHigh">
@@ -537,6 +549,10 @@
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;Car /&gt;, document.getElementById('root'));
       </div>
+      <iframe src="https://codesandbox.io/embed/hungry-currying-93m96n?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="function component"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5 id="muc3_4">Các component lồng nhau</h5>
       <p>Chúng ta có thể gọi một component trong một component khác. Ví dụ tạo component tên Garage như sau:</p>
       <div class="w3-code notranslate htmlHigh">
@@ -552,16 +568,21 @@
         }<br>
       </div>
       <p>Component Garage trả về các phần tử HTML và component Car.</p>
-      <h5 id="muc3_5">Các tập tin component</h5>
-      <p>Để quản lý hiệu quả, các component có thể được tạo trong một tập tin có phần mở rộng .js, ví dụ App.js trong <a
-          href="Bai01.html">bài 1</a>.
-        Một tập tin .js chứa các component có nội dung cơ bản như sau:</p>
+      <iframe src="https://codesandbox.io/embed/nested-components-36ldpv?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="nested components"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
+      <h5 id="muc3_5">Các component trong tập tin</h5>
+      <p>Để quản lý hiệu quả, các component có thể được tạo trong các tập tin có phần mở rộng .js khác nhau như Car.js
+        hay Garage.js từ ví dụ trên.</p>
+      <p>Tuy nhiên, các component có thể được tạo trong một tập tin có phần mở rộng .js. Một tập tin .js chứa các
+        component có nội dung cơ bản như sau:</p>
       <div class="w3-code notranslate htmlHigh">
         import React from 'react';<br>
         import ReactDOM from 'react-dom';<br><br>
 
         Component_1<br>
-        Component_2<br>
+        export Component_2<br>
         ...<br><br>
 
         export default Component_1;
@@ -570,15 +591,17 @@
         Để sử dụng các component, trong tập tin js (ví dụ index.js) chúng ta phải import các component dùng lệnh:</p>
       <div class="w3-code notranslate htmlHigh">
         import Component_1 from './tập tin chứa Component_1';<br>
-        import Component_2 from './tập tin chứa Component_2';<br>
+        import { Component_2 } from './tập tin chứa Component_2';<br>
         ...
       </div>
+      <p>Để ý rằng, Component_1 dùng export default nên import bình thường, Component_2 khi import phải đặt trong cặp
+        "{}".</p>
       <p>Ví dụ chúng ta thay đổi nội dung App.js trong <a href="Bai01.html">bài 1</a> như sau:</p>
       <div class="w3-code notranslate htmlHigh">
         import React from 'react';<br>
         import ReactDOM from 'react-dom';<br>
 
-        function Car() {<br>
+        export function Car() {<br>
         &nbsp;&nbsp;return &lt;h2&gt;Hi, I am also a Car!&lt;/h2&gt;;<br>
         }<br>
         class Garage extends React.Component {<br>
@@ -590,20 +613,24 @@
         &nbsp;&nbsp;&nbsp;&nbsp;);<br>
         &nbsp;&nbsp;}<br>
         }<br>
-        export default Car;
+        export default Garage;
       </div>
       <p>Trong tập tin index.js chúng ta viết lại:</p>
       <div class="w3-code notranslate htmlHigh">
         import React from 'react';<br>
         import ReactDOM from 'react-dom';<br>
         import Garage from './App.js'<br>
-        import Car from './App.js'<br>
+        import { Car } from './App.js'<br>
 
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;Garage /&gt;, document.getElementById('root'));<br>
         ReactDOM.render(<br>
         &nbsp;&nbsp;&lt;Car /&gt;, document.getElementById('content'));
       </div>
+      <iframe src="https://codesandbox.io/embed/components-in-files-dqf7fv?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="Components in Files"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
       <h5 id="muc3_6">Thuộc tính component và hàm constructor</h5>
       <p>Một component sẽ chứa các thuộc tính, ví dụ Car chứa các thuộc tính như color, brand, model,...Nếu một
         component có
