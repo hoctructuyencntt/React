@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Thực hành React</title>
+<title>Thực hành Redux và React Redux</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="w3.css">
@@ -150,12 +150,20 @@
         ứng dụng web với React</a>
       <a href="Bai03.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 3: Quản lý dữ liệu ứng dụng
         web với React</a>
-      <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Thực hành
+      <a href="Thuchanh.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Thực hành
         React</a>
       <a href="https://hoctructuyencntt.github.io/React/B%C3%A0i%20t%E1%BA%ADp%20React.pdf" onclick="w3_close()"
         class="w3-bar-item w3-button w3-padding">Bài tập React</a>
       <a href="Bai04.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Bài 4: Redux và
         React Redux</a>
+      <a href="ThuchanhRedux.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal">Thực hành
+        Redux và
+        React Redux</a>
+      <a href="https://react.dev/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Tiếp theo
+        React</a>
+      <a href="https://redux.js.org/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Tiếp
+        theo
+        Redux và React Redux</a>
     </div>
   </nav>
 
@@ -172,46 +180,72 @@
           class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>-->
       <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()">=</span>
       <div class="w3-container">
-        <h1><b>Thực hành React</b></h1>
+        <h1><b>Thực hành Redux và React Redux</b></h1>
       </div>
     </header>
     <div class="w3-container w3-padding-large" style="margin-bottom:32px">
       <div class="w3-center">
         <div class="pagination">
-          <a href="Bai03.html">Bài trước</a>
+          <a href="Bai04.html">Bài trước</a>
         </div>
       </div>
+      <h2><b>Bài Tập 1: Ứng Dụng Danh Bạ</b></h2>
+      <h3>Yêu Cầu Bài Tập:</h3>
+      <p>Hãy xây dựng một ứng dụng danh bạ sử dụng React Redux. Ứng dụng này nên có thể thêm, xem danh sách, sửa đổi và
+        xóa
+        liên hệ.</p>
 
-      <h4>Các ứng dụng React có thể được tạo trên máy cá nhân dùng</h4>
-      <h4>
-        <ul>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/Bai01.html">Visual Studio Code</a></li>
-          <li><a target="_blank"
-              href="https://www.youtube.com/watch?v=sj6qE66KhuM&list=PLIRmmxjSpDGP3Qi6SpKVIQ417IAv2nNcW">CodeSandbox</a>
-          </li>
-      </h4>
-      <h4>Thực hành làm quen React: Thực hiện và nộp bài qua CodeSandBox (Nhấn Share chọn Copy link)</h4>
-      <h4>
-        <ul>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/TH00.pdf">Bài thực hành làm quen React
-              và tạo component</a> (Xem <a href="https://www.youtube.com/watch?v=sj6qE66KhuM">Video hướng dẫn dùng trong
-              CodeSandBox</a>)</li>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/props%20v%C3%A0%20state.pdf">Bài thực
-              hành sử dụng props và state</a></li>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/TH01.pdf">Bài thực hành số 1</a> (Xem <a
-              href="https://www.youtube.com/watch?v=VqFpe1KWi3c">Video hướng dẫn dùng trong CodeSandBox</a>)</li>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/TH02.pdf">Bài thực hành số 2</a></li>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/TH03.pdf">Bài thực hành số 3</a></li>
-          <li><a target="_blank" href="https://hoctructuyencntt.github.io/React/REACT.pdf">Bài thực hành Tổng kết
-              React</a></li>
-        </ul>
-      </h4>
+      <h3>Hướng Dẫn:</h3>
+      <p>Khởi Tạo Redux Store và Reducer:</p>
+      <ul>
+        <li>Tạo reducer để quản lý danh sách liên hệ (contacts).
+        <li>Khởi tạo Redux store với reducer này.
+      </ul>
+      <p>Actions và Action Creators:</p>
+      <p>
+        Định nghĩa các hành động (ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT) và action creators cho chúng.</p>
+      <p>Kết Nối Component với Redux:</p>
+      <ul>
+        <li>Sử dụng hàm connect() từ react-redux để kết nối components với Redux store.
+        <li>Kết nối danh bạ component để hiển thị danh sách liên hệ và các nút thêm, sửa và xóa liên hệ.
+      </ul>
+      <p> Thực Hiện Chức Năng:</p>
+      <ul>
+        <li>Cho phép người dùng thêm mới, sửa đổi và xóa liên hệ thông qua các actions.
+        <li>Hiển thị danh sách liên hệ và các nút tương ứng để thực hiện các chức năng này.
+      </ul>
+      <h2><b>Bài Tập 2: Ứng Dụng Ghi Chú</b></h2>
+      <h3>Yêu Cầu Bài Tập:</h3>
+      <p>Hãy xây dựng một ứng dụng ghi chú sử dụng React Redux. Ứng dụng này nên cho phép người dùng thêm, xem danh
+        sách,
+        sửa đổi và xóa ghi chú.</p>
+
+      <h3>Hướng Dẫn:</h3>
+      <p>Khởi Tạo Redux Store và Reducer:</p>
+      <ul>
+        <li>Tạo reducer để quản lý danh sách ghi chú (notes).
+        <li>Khởi tạo Redux store với reducer này.
+      </ul>
+      <p>Actions và Action Creators:</p>
+
+      <p>Định nghĩa các hành động (ADD_NOTE, UPDATE_NOTE, DELETE_NOTE) và action creators cho chúng.
+      </p>
+      <p>Kết Nối Component với Redux:</p>
+      <ul>
+        <li> Sử dụng hàm connect() từ react-redux để kết nối components với Redux store.
+        <li>Kết nối component ghi chú để hiển thị danh sách ghi chú và các nút thêm, sửa và xóa ghi chú.
+      </ul>
+      <p>Thực Hiện Chức Năng:</p>
+      <ul>
+        <li>Cho phép người dùng thêm mới, sửa đổi và xóa ghi chú thông qua các actions.
+        <li>Hiển thị danh sách ghi chú và các nút tương ứng để thực hiện các chức năng này.
+      </ul>
 
 
 
       <div class="w3-center">
         <div class="pagination">
-          <a href="Bai03.html">Bài trước</a>
+          <a href="Bai04.html">Bài trước</a>
 
         </div>
       </div>
